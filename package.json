@@ -1,0 +1,35 @@
+{
+  "name": "georide-js",
+  "version": "1.0.0",
+  "description": "Georide JavaScript sdk",
+  "main": "lib/georide",
+  "type": "module",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-modules --es-module-specifier-resolution=node test.js"
+  },
+  "keywords": [
+    "georide",
+    "sdk",
+    "api",
+    "node",
+    "javascript",
+    "browser",
+    "server"
+  ],
+  "author": "NeilujD <julien.collard14@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^13.13.5",
+    "@types/node-fetch": "^2.5.7",
+    "@types/socket.io-client": "^1.4.32",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "socket.io": "^2.3.0"
+  }
+}
