@@ -30,7 +30,7 @@ export default class Georide {
    * @param {string} options.protocol the Georide API protocol
    * @param {string} options.auth_uri the Georide API authentication uri
    */
-  constructor (email: string, password: string, options: {host: string, protocol: string, auth_uri: string, new_token_uri: string}) {
+  constructor (email: string, password: string, options: {host: string, protocol: string, auth_uri: string, new_token_uri: string} | {} = {}) {
     this.config = new Config({
       email, password,
       ...options

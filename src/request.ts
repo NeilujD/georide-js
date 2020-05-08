@@ -1,4 +1,4 @@
-import io, { Socket } from 'socket.io-client'
+import io from 'socket.io-client'
 import fetch from 'node-fetch'
 
 import Config from './config'
@@ -43,7 +43,6 @@ export class Token {
  * Class to simplify API request with token authentication 
  * @property {Config} config the config neened to perform requests
  * @property {Token} token the required Georide token 
- * @private @property {Socket} _socket the socket client
  */
 export default class Request {
   config: Config

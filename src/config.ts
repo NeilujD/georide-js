@@ -31,7 +31,7 @@ export default class Config {
    * @param {string} options.authUri the Georide API authentication endpoint uri
    * @param {string} options.newTokenUri the Georide API new token request uri
    */
-  constructor (options: { email: string, password: string, host: string, protocol: string, auth_uri: string, new_token_uri: string }) {
+  constructor (options: { email: string, password: string, host?: string, protocol?: string, auth_uri?: string, new_token_uri?: string }) {
     const { email, password, host = 'api.georide.fr', protocol = 'https', auth_uri = '/user/login', new_token_uri = '/user/new-token'} = options
 
     this.email = email

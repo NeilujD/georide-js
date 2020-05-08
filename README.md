@@ -15,7 +15,7 @@ To make the UX great they also provide a mobile app (iOS and Android supported) 
 
 * `fetch` : The project is using fetch to request the data from the API (`node-fetch` for Node environment). It permit to handle easyly request promises and make it usable in Node application as in browser's.
 
-* Customizable option : If Georide decide to change their API endpoints you can set options so your client still works.
+* Customizable option : If Georide decide to change their API endpoints you can set options so your client can still works.
 
 * Socket client implementation : It implement `socket.io` client to simplify the event subscription the API provide.
 
