@@ -15,7 +15,8 @@
     "build": "rm -r dist && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --module ES2015 --target ES2015 --outDir dist/esm",
     "build:cjs": "tsc --module commonjs --target ES2015 --outDir dist/cjs",
-    "test": "node --experimental-modules --loader ts-node/esm.mjs ./node_modules/mocha/bin/mocha --extension ts"
+    "test": "node --experimental-modules --loader ts-node/esm.mjs ./node_modules/mocha/bin/mocha --extension ts",
+    "doc": "typedoc --out docs src"
   },
   "keywords": [
     "georide",
@@ -38,6 +39,7 @@
     "mocha": "^7.1.2",
     "nock": "^12.0.3",
     "ts-node": "^8.10.1",
+    "typedoc": "^0.17.6",
     "typescript": "^3.8.3"
   },
   "dependencies": {
