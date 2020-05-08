@@ -4,6 +4,7 @@ import Config from '../config'
 
 /**
  * Tracker endpoint class
+ * @category Endpoint
  */
 export default class Tracker extends BaseEndpoint {
   /**

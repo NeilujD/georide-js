@@ -4,6 +4,7 @@ import Config from '../config'
 
 /**
  * User endpoint class
+ * @category Endpoint
  */
 export default class User extends BaseEndpoint {
   /**

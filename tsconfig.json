@@ -65,5 +65,11 @@
   },
   "exclude": [
     "test/"
-  ]
+  ],
+  "typedocOptions": {
+    "inputFiles": ["./src"],
+    "mode": "modules",
+    "out": "docs",
+    "entryPoint": "georide"
+  }
 }
