@@ -19,7 +19,7 @@
     "build:esm": "tsc --module ES2015 --target ES2015 --outDir dist/esm",
     "build:cjs": "tsc --module commonjs --target ES2015 --outDir dist/cjs",
     "doc": "typedoc",
-    "test": "mocha -r ts-node/register test/tests.ts"
+    "test": "mocha -r ts-node/register --extension ts"
   },
   "keywords": [
     "georide",

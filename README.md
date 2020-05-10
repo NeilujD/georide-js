@@ -55,3 +55,9 @@ const main = async () => {
 
 main()
 ```
+
+## Test
+
+```sh
+npm test
+```
