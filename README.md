@@ -35,11 +35,11 @@ import Georide from './lib/georide'
 
 
 const EMAIL = '<your_georide_email_address>'
-const PASSPORT = '<your_georide_password>'
+const PASSWORD = '<your_georide_password>'
 
 const main = async () => {
   // Create the client
-  const client = new Georide(EMAIL, PASSPORT)
+  const client = new Georide(EMAIL, PASSWORD)
 
   // Authenticate the user
   const token = await client.login()
