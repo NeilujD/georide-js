@@ -21,7 +21,8 @@ export default class User extends BaseEndpoint {
    * @return {Promise<{}>} a promise to the info data
    */
   info (): Promise<{}> {
-    const uri = `/${this.baseUri}`
+    const { baseUri } = this
+    const uri = `/${baseUri}`
 
     return this.request.send(uri)
   }
@@ -31,7 +32,8 @@ export default class User extends BaseEndpoint {
    * @return {Promise<{}>} a promise to the trackers list
    */
   trackers (): Promise<{}> {
-    const uri = `/${this.baseUri}/trackers`
+    const { baseUri } = this
+    const uri = `/${baseUri}/trackers`
 
     return this.request.send(uri)
   }

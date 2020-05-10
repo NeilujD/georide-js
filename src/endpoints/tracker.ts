@@ -1,5 +1,6 @@
 import BaseEndpoint from './base'
 import Config from '../config'
+import { formatDateParam } from '../helper'
 
 
 /**
@@ -13,7 +14,7 @@ export default class Tracker extends BaseEndpoint {
    */
   constructor (config: Config) {
     super(config)
-    this.baseUri = '/tracker'
+    this.baseUri = 'tracker'
   }
 
   /**
@@ -22,9 +23,10 @@ export default class Tracker extends BaseEndpoint {
    * @param {Date} to the end date filter
    * @return {Promise<{}>} a promise to the trips list
    */
-  trips (from: Date, to: Date): Promise<{}> {
-    const uri = '/trips'
-    const params = { from ,to }
+  trips (id: number, from: Date, to: Date): Promise<{}> {
+    const { baseUri } = this
+    const uri = `/${baseUri}/${id}/trips`
+    const params = formatDateParam({ from ,to })
 
     return this.request.send(uri, params)
   }
@@ -35,9 +37,10 @@ export default class Tracker extends BaseEndpoint {
    * @param {Date} to the end date filter
    * @return {Promise<{}>} a promise to the positions data
    */
-  positions (from: Date, to: Date): Promise<{}> {
-    const uri = '/trips/positions'
-    const params = { from, to }
+  positions (id: number, from: Date, to: Date): Promise<{}> {
+    const { baseUri } = this
+    const uri = `/${baseUri}/${id}/trips/positions`
+    const params = formatDateParam({ from ,to })
 
     return this.request.send(uri, params)
   }
@@ -47,8 +50,9 @@ export default class Tracker extends BaseEndpoint {
    * @param {string} trackerId 
    * @return {Promise<{}>} a promise to the result
    */
-  lock (trackerId: string): Promise<{}> {
-    const uri = `/${trackerId}/lock`
+  lock (id: number): Promise<{}> {
+    const { baseUri } = this
+    const uri = `/${baseUri}/${id}/lock`
 
     return this.request.send(uri, null, 'POST')
   }

@@ -1,3 +1,4 @@
+import { URL } from 'url'
 import io from 'socket.io-client'
 import fetch from 'node-fetch'
 
@@ -5,17 +6,29 @@ import Config from './config'
 
 const GEORIDE_MISSING_TOKEN_ERROR = 'Aucun motard trouvé à cette adresse ⭕️'
 const INTERN_MISSING_TOKEN_ERROR = 'missing_valid_token'
+const GEORIDE_INVALID_LOGIN = 'InvalidLogin'
+const INTERN_INVALID_LOGIN = 'invalid_login'
+const ERRORS:{[key: string]: string} = {}
+ERRORS[GEORIDE_MISSING_TOKEN_ERROR] = INTERN_MISSING_TOKEN_ERROR
+ERRORS[GEORIDE_INVALID_LOGIN] = INTERN_INVALID_LOGIN
+export { 
+  GEORIDE_MISSING_TOKEN_ERROR,
+  INTERN_MISSING_TOKEN_ERROR, 
+  GEORIDE_INVALID_LOGIN,
+  INTERN_INVALID_LOGIN, 
+  ERRORS
+}
 
 
 /** 
  * Class representing a Georide token 
- * @property {string} id the user id
+ * @property {number} id the user id
  * @property {string} email the user email
  * @property {boolean} isAdmin determine is user has admin right on Georide API
  * @property {string} authToken the access token
  */
 export class Token {
-  id: string
+  id: number
   email: string
   isAdmin: boolean
   authToken: string
@@ -23,12 +36,12 @@ export class Token {
   /** 
    * Create a token
    * @param {object} data
-   * @param {string} data.id the user id
+   * @param {number} data.id the user id
    * @param {string} data.email the user email 
    * @param {boolean} data.isAdmin determine is user has admin right on Georide API
    * @param {string} data.authToken the access token 
    */
-  constructor (data: { id: string, email: string, isAdmin: boolean, authToken: string}) {
+  constructor (data: { id: number, email: string, isAdmin: boolean, authToken: string}) {
     const { id, email, isAdmin, authToken } = data
 
     this.id = id
@@ -74,7 +87,7 @@ export default class Request {
 
       // Check if `InvalidRequest` is returned
       if (data.error) {
-        throw new Error(data.error)
+        throw new Error(ERRORS[data.error] ? ERRORS[data.error] : data.error)
       }
       
       const token = new Token(data)
@@ -106,7 +119,7 @@ export default class Request {
    * @param method 
    * @return {Promise<{}>} a promise to the data
    */
-  async send (uri: string, params: Object | null = null, method: string = 'GET'): Promise<{}> {
+  async send (uri: string, params: {[key: string]: any} | null = null, method: string = 'GET'): Promise<{}> {
     const { protocol, host, token } = this.config
 
     const req = async (token: Token) => {
@@ -114,14 +127,17 @@ export default class Request {
         'content-type': 'application/json',
         'Authorization': `Bearer ${token.authToken}`
       }
-      const url = `${protocol}://${host}${uri}`
+      const url = new URL(`${protocol}://${host}${uri}`)
 
       let options: {} = { method, headers }
-      if (method.toUpperCase() === 'POST') 
+      if (method.toUpperCase() === 'POST' && params) 
         options = {
           ...options,
           body: JSON.stringify(params)
         }
+      
+      if (params)
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
       try {
         const response = await fetch(url, options)
