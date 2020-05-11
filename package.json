@@ -1,0 +1,56 @@
+{
+  "name": "georide-js",
+  "version": "1.0.0",
+  "description": "Georide JavaScript sdk",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/NeilujD/georide-js.git"
+  },
+  "main": "dist/cjs/georide.js",
+  "module": "dist/esm/georide.js",
+  "files": [
+    "dist/**/*",
+    "src/**/*",
+    "test/**/*",
+    "tsconfig.json"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc --module ES2015 --target ES2015 --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --target ES2015 --outDir dist/cjs",
+    "doc": "typedoc",
+    "test": "mocha -r ts-node/register --extension ts"
+  },
+  "keywords": [
+    "georide",
+    "sdk",
+    "api",
+    "node",
+    "javascript",
+    "browser",
+    "server"
+  ],
+  "author": "NeilujD <julien.collard14@gmail.com>",
+  "license": "SEE LICENSE IN ./LICENSE",
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.13.5",
+    "@types/node-fetch": "^2.5.7",
+    "@types/socket.io-client": "^1.4.32",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.2",
+    "nock": "^12.0.3",
+    "ts-node": "^8.10.1",
+    "typedoc": "^0.17.6",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "moment": "^2.25.3",
+    "node-fetch": "^2.6.0",
+    "socket.io": "^2.3.0"
+  }
+}
