@@ -19,6 +19,9 @@ jobs:
             - run:
                 name: Run tests
                 command: npm test
+            - persist_to_workspace:
+                root: ~/repo
+                paths: .
   publish:
     executor:
       name: node/default
