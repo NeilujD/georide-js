@@ -15,7 +15,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "rm -r dist && npm run build:esm && npm run build:cjs",
+    "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --module ES2015 --target ES2015 --outDir dist/esm",
     "build:cjs": "tsc --module commonjs --target ES2015 --outDir dist/cjs",
     "doc": "typedoc",
