@@ -24,7 +24,7 @@ jobs:
     steps:
       - run:
           name: Publish to npm
-          command: 
+          command: |
             npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
             npm publish --access public
 workflows:
@@ -35,6 +35,8 @@ workflows:
               tags:
                 only: /.*/
         - publish:
+            requires:
+              - build-and-test
             filters:
               branches:
                 ignore: /.*/
