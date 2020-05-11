@@ -1,0 +1,183 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>georide-js</title>
+	<meta name="description" content="Documentation for georide-js">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">georide-js</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>georide-js</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><a href="LINK"><img src="https://circleci.com/gh/NeilujD/georide-js.svg?style=shield" alt="&lt;ORG_NAME&gt;"></a></p>
+				<a href="#georide-js" id="georide-js" style="color: inherit; text-decoration: none;">
+					<h1>georide-js</h1>
+				</a>
+				<p><code>georide-js</code> is a tiny JavaScript API client for <a href="https://georide.fr/">Georide</a> which is awesome french tech, mostly if you are a motorcycle rider.</p>
+				<a href="#georide" id="georide" style="color: inherit; text-decoration: none;">
+					<h2>Georide</h2>
+				</a>
+				<p>Georide a french company that provide security and GPS features for motorcycle.
+				To use it you need to buy from them a small box full of sensors that you put on your bike directly powered by its battery.</p>
+				<p>To make the UX great they also provide a mobile app (iOS and Android supported) and they made their API public so the users/customers can play with it.</p>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
+				<ul>
+					<li><p><code>fetch</code> : The project is using fetch to request the data from the API (<code>node-fetch</code> for Node environment). It permit to handle easyly request promises and make it usable in Node application as in browser&#39;s.</p>
+					</li>
+					<li><p>Customizable option : If Georide decide to change their API endpoints you can set options so your client can still works.</p>
+					</li>
+					<li><p>Socket client implementation : It implement <code>socket.io</code> client to simplify the event subscription the API provide.</p>
+					</li>
+				</ul>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h2>Install</h2>
+				</a>
+				<pre><code class="language-sh">npm i -s georide-js</code></pre>
+				<a href="#how-to-use" id="how-to-use" style="color: inherit; text-decoration: none;">
+					<h2>How to use</h2>
+				</a>
+				<p>Example :</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> Georide = <span class="hljs-built_in">require</span>(<span class="hljs-string">'georide-js'</span>).default
+
+
+<span class="hljs-keyword">const</span> EMAIL = <span class="hljs-string">'&lt;your_georide_email_address&gt;'</span>
+<span class="hljs-keyword">const</span> PASSWORD = <span class="hljs-string">'&lt;your_georide_password&gt;'</span>
+
+<span class="hljs-keyword">const</span> main = <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-comment">// Create the client</span>
+  <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Georide(EMAIL, PASSWORD)
+
+  <span class="hljs-comment">// Authenticate the user</span>
+  <span class="hljs-keyword">const</span> token = <span class="hljs-keyword">await</span> client.login()
+
+  <span class="hljs-comment">// Retrieve the user infos</span>
+  <span class="hljs-keyword">const</span> info = <span class="hljs-keyword">await</span> client.User.info()
+
+  <span class="hljs-comment">// Subscribe to the `position` event</span>
+  client.onPosition(<span class="hljs-function"><span class="hljs-params">message</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> { trackerId, latitude, longitude, moving } = message
+  })
+}
+
+main()</code></pre>
+				<a href="#test" id="test" style="color: inherit; text-decoration: none;">
+					<h2>Test</h2>
+				</a>
+				<pre><code class="language-sh">npm <span class="hljs-built_in">test</span></code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_config_.html">&quot;config&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_endpoints_base_.html">&quot;endpoints/base&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_endpoints_tracker_.html">&quot;endpoints/tracker&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_endpoints_user_.html">&quot;endpoints/user&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_georide_.html">&quot;georide&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_helper_.html">&quot;helper&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_request_.html">&quot;request&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
