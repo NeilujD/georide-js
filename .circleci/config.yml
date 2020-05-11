@@ -24,6 +24,8 @@ jobs:
       name: node/default
     working_directory: ~/repo
     steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: Publish to npm
           command: |
