@@ -31,7 +31,7 @@ npm i -s georide-js
 Example :
 
 ```js
-import Georide from './lib/georide'
+const Georide = require('georide-js').default
 
 
 const EMAIL = '<your_georide_email_address>'
