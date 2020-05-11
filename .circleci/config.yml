@@ -9,9 +9,34 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm install
-            - run: npm test
+            - run:
+                name: Install dependencies
+                command: npm install
+            - run:
+                name: Build the dist directory
+                command: npm run build
+            - run:
+                name: Run tests
+                command: npm test
+  publish:
+    executor:
+      name: node/default
+    steps:
+      - run:
+          name: Publish to npm
+          command: 
+            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+            npm publish
 workflows:
-    build-and-test:
+    build-and-publish:
       jobs:
-        - build-and-test
+        - build-and-test:
+            filters:
+              tags:
+                only: /.*/
+        - publish:
+            filters:
+              branches:
+                ignore: /.*/
+              tags:
+                only: /[0-9]+\.[0-9]+\.[0-9]+/

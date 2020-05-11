@@ -9,7 +9,7 @@
   "main": "dist/cjs/georide.js",
   "module": "dist/esm/georide.js",
   "files": [
-    "lib/**/*"
+    "dist/**/*"
   ],
   "directories": {
     "test": "test"
