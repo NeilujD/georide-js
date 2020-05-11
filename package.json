@@ -9,7 +9,10 @@
   "main": "dist/cjs/georide.js",
   "module": "dist/esm/georide.js",
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "src/**/*",
+    "test/**/*",
+    "tsconfig.json"
   ],
   "directories": {
     "test": "test"
