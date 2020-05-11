@@ -1,3 +1,6 @@
+[![<ORG_NAME>](https://circleci.com/gh/NeilujD/georide-js.svg?style=shield)](<LINK>)
+
+
 # georide-js
 
 `georide-js` is a tiny JavaScript API client for [Georide](https://georide.fr/) which is awesome french tech, mostly if you are a motorcycle rider.
