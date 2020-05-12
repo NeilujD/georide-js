@@ -2,6 +2,7 @@
   "name": "georide-js",
   "version": "1.0.1",
   "description": "Georide JavaScript sdk",
+  "homepage": "https://neilujd.github.io/georide-js/",
   "repository": {
     "type": "git",
     "url": "git://github.com/NeilujD/georide-js.git"
