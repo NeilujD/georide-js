@@ -143,6 +143,16 @@ describe('tracker endpoint', () => {
     })
   })
 
+  describe('unlock the tracker', () => {
+    it('should unlock the tracker', async () => {
+      const trackerId = 1
+
+      scope.post(`/tracker/${trackerId}/unlock`).reply(200, {ok: true})
+
+      await client.Tracker.unlock(trackerId)
+    })
+  })
+
   after(()=>{
     nock.cleanAll()
   })

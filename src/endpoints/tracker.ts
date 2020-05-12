@@ -47,11 +47,22 @@ export default class Tracker extends BaseEndpoint {
 
   /**
    * Lock the tracker
-   * @param {number} trackerId 
+   * @param {number} id 
    */
   lock (id: number) {
     const { baseUri } = this
     const uri = `/${baseUri}/${id}/lock`
+
+    this.request.send(uri, null, 'POST')
+  }
+
+  /**
+   * Unlock the tracker
+   * @param {number} id 
+   */
+  unlock (id: number) {
+    const { baseUri } = this
+    const uri = `/${baseUri}/${id}/unlock`
 
     this.request.send(uri, null, 'POST')
   }
