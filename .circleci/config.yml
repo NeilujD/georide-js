@@ -46,6 +46,9 @@ jobs:
           fingerprints:
             - "a1:c2:ea:5f:1d:3d:cc:66:75:09:69:15:cf:23:6c:77"
       - run:
+          name: Avoid hosts unknown for github
+          command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run:
           name: Install and configure dependencies
           command: |
             git config user.email "julien.collard14@gmail.com"
