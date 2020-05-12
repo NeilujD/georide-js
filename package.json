@@ -24,7 +24,7 @@
     "build:cjs": "tsc --module commonjs --target ES2015 --outDir dist/cjs",
     "clean-and-build": "rm -r dist && npm run build",
     "doc:build": "typedoc",
-    "doc:deploy": "gh-pages --message \"[skip ci] Updates\" --dist docs",
+    "doc:deploy": "gh-pages --message \"[ci skip] update documentation\" --dist docs",
     "test": "mocha -r ts-node/register --extension ts"
   },
   "keywords": [
