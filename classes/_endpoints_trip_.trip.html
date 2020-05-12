@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BaseEndpoint | georide-js</title>
+	<title>Trip | georide-js</title>
 	<meta name="description" content="Documentation for georide-js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_endpoints_base_.html">&quot;endpoints/base&quot;</a>
+					<a href="../modules/_endpoints_trip_.html">&quot;endpoints/trip&quot;</a>
 				</li>
 				<li>
-					<a href="_endpoints_base_.baseendpoint.html">BaseEndpoint</a>
+					<a href="_endpoints_trip_.trip.html">Trip</a>
 				</li>
 			</ul>
-			<h1>Class BaseEndpoint</h1>
+			<h1>Class Trip</h1>
 		</div>
 	</div>
 </header>
@@ -72,35 +72,18 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Abstract class to implement endpoints</p>
+						<p>Trip endpoint class</p>
 					</div>
-					<dl class="tsd-comment-tags">
-						<dt>property</dt>
-						<dd><p>{Config} config the client config</p>
-						</dd>
-						<dt>property</dt>
-						<dd><p>{Request} request the request object</p>
-						</dd>
-						<dt>property</dt>
-						<dd><p>{string} baseUri the endpoint base URI</p>
-						</dd>
-					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">BaseEndpoint</span>
+						<a href="_endpoints_base_.baseendpoint.html" class="tsd-signature-type">BaseEndpoint</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="_endpoints_tracker_.tracker.html" class="tsd-signature-type">Tracker</a>
-							</li>
-							<li>
-								<a href="_endpoints_trip_.trip.html" class="tsd-signature-type">Trip</a>
-							</li>
-							<li>
-								<a href="_endpoints_user_.user.html" class="tsd-signature-type">User</a>
+								<span class="target">Trip</span>
 							</li>
 						</ul>
 					</li>
@@ -113,15 +96,21 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_endpoints_base_.baseendpoint.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_endpoints_trip_.trip.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-inherited">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_endpoints_trip_.trip.html#baseuri" class="tsd-kind-icon">base<wbr>Uri</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_endpoints_trip_.trip.html#config" class="tsd-kind-icon">config</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_endpoints_trip_.trip.html#request" class="tsd-kind-icon">request</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_endpoints_base_.baseendpoint.html#baseuri" class="tsd-kind-icon">base<wbr>Uri</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_endpoints_base_.baseendpoint.html#config" class="tsd-kind-icon">config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_endpoints_base_.baseendpoint.html#request" class="tsd-kind-icon">request</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_endpoints_trip_.trip.html#get" class="tsd-kind-icon">get</a></li>
 							</ul>
 						</section>
 					</div>
@@ -129,22 +118,23 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Base<wbr>Endpoint<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="_config_.config.html" class="tsd-signature-type">Config</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_endpoints_base_.baseendpoint.html" class="tsd-signature-type">BaseEndpoint</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Trip<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="_config_.config.html" class="tsd-signature-type">Config</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_endpoints_trip_.trip.html" class="tsd-signature-type">Trip</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_endpoints_base_.baseendpoint.html">BaseEndpoint</a>.<a href="_endpoints_base_.baseendpoint.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/base.ts#L15">endpoints/base.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/trip.ts#L9">endpoints/trip.ts:9</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Create an endpoint instance</p>
+									<p>Create a <code>Trip</code> endpoint instance</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -157,42 +147,82 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_endpoints_base_.baseendpoint.html" class="tsd-signature-type">BaseEndpoint</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_endpoints_trip_.trip.html" class="tsd-signature-type">Trip</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="baseuri" class="tsd-anchor"></a>
 					<h3>base<wbr>Uri</h3>
 					<div class="tsd-signature tsd-kind-icon">base<wbr>Uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="_endpoints_base_.baseendpoint.html">BaseEndpoint</a>.<a href="_endpoints_base_.baseendpoint.html#baseuri">baseUri</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/base.ts#L15">endpoints/base.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="config" class="tsd-anchor"></a>
 					<h3>config</h3>
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="_config_.config.html" class="tsd-signature-type">Config</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="_endpoints_base_.baseendpoint.html">BaseEndpoint</a>.<a href="_endpoints_base_.baseendpoint.html#config">config</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/base.ts#L13">endpoints/base.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="request" class="tsd-anchor"></a>
 					<h3>request</h3>
 					<div class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">:</span> <a href="_request_.request.html" class="tsd-signature-type">Request</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="_endpoints_base_.baseendpoint.html">BaseEndpoint</a>.<a href="_endpoints_base_.baseendpoint.html#request">request</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/base.ts#L14">endpoints/base.ts:14</a></li>
 						</ul>
 					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="get" class="tsd-anchor"></a>
+					<h3>get</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/trip.ts#L24">endpoints/trip.ts:24</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the shared trip by share id</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the trip share id</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<blockquote>
+								<p>} a promise to the trip</p>
+							</blockquote>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -205,13 +235,13 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_config_.html">&quot;config&quot;</a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_endpoints_base_.html">&quot;endpoints/base&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_endpoints_tracker_.html">&quot;endpoints/tracker&quot;</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/_endpoints_trip_.html">&quot;endpoints/trip&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -233,19 +263,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_endpoints_base_.baseendpoint.html" class="tsd-kind-icon">Base<wbr>Endpoint</a>
+						<a href="_endpoints_trip_.trip.html" class="tsd-kind-icon">Trip</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_endpoints_base_.baseendpoint.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_endpoints_trip_.trip.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_endpoints_base_.baseendpoint.html#baseuri" class="tsd-kind-icon">base<wbr>Uri</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="_endpoints_trip_.trip.html#baseuri" class="tsd-kind-icon">base<wbr>Uri</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_endpoints_base_.baseendpoint.html#config" class="tsd-kind-icon">config</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="_endpoints_trip_.trip.html#config" class="tsd-kind-icon">config</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_endpoints_base_.baseendpoint.html#request" class="tsd-kind-icon">request</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="_endpoints_trip_.trip.html#request" class="tsd-kind-icon">request</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_endpoints_trip_.trip.html#get" class="tsd-kind-icon">get</a>
 							</li>
 						</ul>
 					</li>
@@ -263,11 +296,14 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
 			</ul>
 		</div>
 	</div>

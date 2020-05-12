@@ -112,7 +112,10 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_endpoints_tracker_.tracker.html#lock" class="tsd-kind-icon">lock</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_endpoints_tracker_.tracker.html#positions" class="tsd-kind-icon">positions</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_endpoints_tracker_.tracker.html#sharetrip" class="tsd-kind-icon">share<wbr>Trip</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_endpoints_tracker_.tracker.html#toggle" class="tsd-kind-icon">toggle</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_endpoints_tracker_.tracker.html#trips" class="tsd-kind-icon">trips</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_endpoints_tracker_.tracker.html#unlock" class="tsd-kind-icon">unlock</a></li>
 							</ul>
 						</section>
 					</div>
@@ -131,7 +134,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_endpoints_base_.baseendpoint.html">BaseEndpoint</a>.<a href="_endpoints_base_.baseendpoint.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/88b6f62/src/endpoints/tracker.ts#L10">endpoints/tracker.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/tracker.ts#L10">endpoints/tracker.ts:10</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -163,7 +166,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_endpoints_base_.baseendpoint.html">BaseEndpoint</a>.<a href="_endpoints_base_.baseendpoint.html#baseuri">baseUri</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/88b6f62/src/endpoints/base.ts#L15">endpoints/base.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/base.ts#L15">endpoints/base.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -174,7 +177,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_endpoints_base_.baseendpoint.html">BaseEndpoint</a>.<a href="_endpoints_base_.baseendpoint.html#config">config</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/88b6f62/src/endpoints/base.ts#L13">endpoints/base.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/base.ts#L13">endpoints/base.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -185,7 +188,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_endpoints_base_.baseendpoint.html">BaseEndpoint</a>.<a href="_endpoints_base_.baseendpoint.html#request">request</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/88b6f62/src/endpoints/base.ts#L14">endpoints/base.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/base.ts#L14">endpoints/base.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -196,30 +199,29 @@
 					<a name="lock" class="tsd-anchor"></a>
 					<h3>lock</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">lock<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">lock<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/88b6f62/src/endpoints/tracker.ts#L53">endpoints/tracker.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/tracker.ts#L54">endpoints/tracker.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Locl the tracker</p>
+									<p>Lock the tracker</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<blockquote>
-								<p>} a promise to the result</p>
-							</blockquote>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -233,7 +235,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/88b6f62/src/endpoints/tracker.ts#L40">endpoints/tracker.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/tracker.ts#L42">endpoints/tracker.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,6 +247,9 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the tracker id</p>
+									</div>
 								</li>
 								<li>
 									<h5>from: <span class="tsd-signature-type">Date</span></h5>
@@ -267,6 +272,77 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="sharetrip" class="tsd-anchor"></a>
+					<h3>share<wbr>Trip</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">share<wbr>Trip<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>tripId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>from<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">; </span>to<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>tripMergeId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/tracker.ts#L93">endpoints/tracker.ts:93</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Share a trip</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the tracker id</p>
+									</div>
+								</li>
+								<li>
+									<h5>params: <span class="tsd-signature-symbol">{ </span>tripId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>from<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">; </span>to<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>tripMergeId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the action params</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="toggle" class="tsd-anchor"></a>
+					<h3>toggle</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">toggle<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/tracker.ts#L77">endpoints/tracker.ts:77</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Toggle the tracker lock</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the tracker id</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<blockquote>
+								<p>} a promise to the result</p>
+							</blockquote>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="trips" class="tsd-anchor"></a>
 					<h3>trips</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -276,7 +352,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/88b6f62/src/endpoints/tracker.ts#L26">endpoints/tracker.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/tracker.ts#L27">endpoints/tracker.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -288,6 +364,9 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the tracker id</p>
+									</div>
 								</li>
 								<li>
 									<h5>from: <span class="tsd-signature-type">Date</span></h5>
@@ -309,6 +388,36 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="unlock" class="tsd-anchor"></a>
+					<h3>unlock</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">unlock<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/42efd2f/src/endpoints/tracker.ts#L65">endpoints/tracker.ts:65</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Unlock the tracker</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -325,6 +434,9 @@
 					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/_endpoints_tracker_.html">&quot;endpoints/tracker&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_endpoints_trip_.html">&quot;endpoints/trip&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_endpoints_user_.html">&quot;endpoints/user&quot;</a>
@@ -366,7 +478,16 @@
 								<a href="_endpoints_tracker_.tracker.html#positions" class="tsd-kind-icon">positions</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_endpoints_tracker_.tracker.html#sharetrip" class="tsd-kind-icon">share<wbr>Trip</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_endpoints_tracker_.tracker.html#toggle" class="tsd-kind-icon">toggle</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_endpoints_tracker_.tracker.html#trips" class="tsd-kind-icon">trips</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_endpoints_tracker_.tracker.html#unlock" class="tsd-kind-icon">unlock</a>
 							</li>
 						</ul>
 					</li>

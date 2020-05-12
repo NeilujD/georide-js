@@ -69,12 +69,15 @@
 					<h1>georide-js</h1>
 				</a>
 				<p><code>georide-js</code> is a tiny JavaScript API client for <a href="https://georide.fr/">Georide</a> which is awesome french tech, mostly if you are a motorcycle rider.</p>
+				<p>See full API documentation <a href="https://neilujd.github.io/georide-js/">here</a>.</p>
 				<a href="#georide" id="georide" style="color: inherit; text-decoration: none;">
 					<h2>Georide</h2>
 				</a>
 				<p>Georide a french company that provide security and GPS features for motorcycle.
 				To use it you need to buy from them a small box full of sensors that you put on your bike directly powered by its battery.</p>
 				<p>To make the UX great they also provide a mobile app (iOS and Android supported) and they made their API public so the users/customers can play with it.</p>
+				<p>See Georide API documentation <a href="https://api.georide.fr/">here</a>.
+				See Georide services status page <a href="https://status.georide.fr/">here</a>.</p>
 				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
 					<h2>Features</h2>
 				</a>
@@ -97,23 +100,34 @@
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> Georide = <span class="hljs-built_in">require</span>(<span class="hljs-string">'georide-js'</span>).default
 
 
-<span class="hljs-keyword">const</span> EMAIL = <span class="hljs-string">'&lt;your_georide_email_address&gt;'</span>
-<span class="hljs-keyword">const</span> PASSWORD = <span class="hljs-string">'&lt;your_georide_password&gt;'</span>
+<span class="hljs-keyword">const</span> EMAIL = process.env.EMAIL
+<span class="hljs-keyword">const</span> PASSWORD = process.env.PASSWORD
 
 <span class="hljs-keyword">const</span> main = <span class="hljs-keyword">async</span> () =&gt; {
   <span class="hljs-comment">// Create the client</span>
   <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Georide(EMAIL, PASSWORD)
-
   <span class="hljs-comment">// Authenticate the user</span>
   <span class="hljs-keyword">const</span> token = <span class="hljs-keyword">await</span> client.login()
-
-  <span class="hljs-comment">// Retrieve the user infos</span>
-  <span class="hljs-keyword">const</span> info = <span class="hljs-keyword">await</span> client.User.info()
-
+  <span class="hljs-comment">// Retrieve the user info</span>
+  <span class="hljs-keyword">const</span> info = <span class="hljs-keyword">await</span> client.Tracker.lock()
+  <span class="hljs-comment">// Retrieve my trackers</span>
+  <span class="hljs-keyword">const</span> trackers = <span class="hljs-keyword">await</span> client.User.trackers()
+  <span class="hljs-keyword">const</span> myTrackers = trackers.filter(<span class="hljs-function"><span class="hljs-params">t</span> =&gt;</span> t.role === <span class="hljs-string">'owner'</span>)
+  <span class="hljs-keyword">const</span> myTrackerId = myTrackers[<span class="hljs-number">0</span>].trackerId
+  <span class="hljs-comment">// Retrieve my tracker trips</span>
+  <span class="hljs-keyword">const</span> trips = <span class="hljs-keyword">await</span> client.Tracker.trips(myTrackerId, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'May 01, 2019 00:00:00'</span>), <span class="hljs-built_in">Date</span>.now())
+  <span class="hljs-comment">// Lock a tracker</span>
+  <span class="hljs-keyword">await</span> client.Tracker.lock(myTrackerId)
+  <span class="hljs-comment">// Toggle a tracker lock</span>
+  <span class="hljs-keyword">const</span> { locked } = <span class="hljs-keyword">await</span> client.Tracker.toggle(myTrackerId)
+  <span class="hljs-comment">// Share a trip</span>
+  <span class="hljs-keyword">const</span> { url, shareId } = <span class="hljs-keyword">await</span> client.Tracker.shareTrip(myTrackerId, {<span class="hljs-attr">tripId</span>: trips[<span class="hljs-number">0</span>].id})
   <span class="hljs-comment">// Subscribe to the `position` event</span>
   client.onPosition(<span class="hljs-function"><span class="hljs-params">message</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> { trackerId, latitude, longitude, moving } = message
   })
+
+  process.exit()
 }
 
 main()</code></pre>
@@ -121,6 +135,20 @@ main()</code></pre>
 					<h2>Test</h2>
 				</a>
 				<pre><code class="language-sh">npm <span class="hljs-built_in">test</span></code></pre>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
+				</a>
+				<a href="#install-1" id="install-1" style="color: inherit; text-decoration: none;">
+					<h3>Install</h3>
+				</a>
+				<pre><code class="language-sh">git <span class="hljs-built_in">clone</span> git@github.com:NeilujD/next-blog.git
+docker build ./</code></pre>
+				<a href="#tips" id="tips" style="color: inherit; text-decoration: none;">
+					<h3>Tips</h3>
+				</a>
+				<ul>
+					<li>Update tests if needed</li>
+				</ul>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -137,6 +165,9 @@ main()</code></pre>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_endpoints_tracker_.html">&quot;endpoints/tracker&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_endpoints_trip_.html">&quot;endpoints/trip&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_endpoints_user_.html">&quot;endpoints/user&quot;</a>
