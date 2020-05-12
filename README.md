@@ -102,3 +102,4 @@ docker build ./
 ### Tips
 
 * Update tests if needed
+* Update the `JSDoc` part
