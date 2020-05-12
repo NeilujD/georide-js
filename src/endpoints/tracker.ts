@@ -19,6 +19,7 @@ export default class Tracker extends BaseEndpoint {
 
   /**
    * Request the tracker trips list between two dates
+   * @param {number} id the tracker id
    * @param {Date} from the start date filter
    * @param {Date} to the end date filter
    * @return {Promise<{}>} a promise to the trips list
@@ -33,6 +34,7 @@ export default class Tracker extends BaseEndpoint {
 
   /**
    * Request the tracker positions between two dates
+   * @param {number} id the tracker id
    * @param {Date} from the start date filter
    * @param {Date} to the end date filter
    * @return {Promise<{}>} a promise to the positions data
@@ -46,14 +48,52 @@ export default class Tracker extends BaseEndpoint {
   }
 
   /**
-   * Locl the tracker
-   * @param {string} trackerId 
-   * @return {Promise<{}>} a promise to the result
+   * Lock the tracker
+   * @param {number} id 
    */
-  lock (id: number): Promise<{}> {
+  lock (id: number) {
     const { baseUri } = this
     const uri = `/${baseUri}/${id}/lock`
 
+    this.request.send(uri, null, 'POST')
+  }
+
+  /**
+   * Unlock the tracker
+   * @param {number} id 
+   */
+  unlock (id: number) {
+    const { baseUri } = this
+    const uri = `/${baseUri}/${id}/unlock`
+
+    this.request.send(uri, null, 'POST')
+  }
+
+  /**
+   * Toggle the tracker lock
+   * @param {number} id the tracker id
+   * @return {Promise<{}>} a promise to the result
+   */
+  toggle (id: number): Promise<{}> {
+    const { baseUri } = this
+    const uri = `/${baseUri}/${id}/toggleLock`
+
     return this.request.send(uri, null, 'POST')
+  }
+
+  /**
+   * Share a trip
+   * @param {number} id the tracker id
+   * @param {object} params the action params
+   * @param {number} params.tripId the id of the trip you want to share
+   * @param {Date} params.from the `from` filter date
+   * @param {Date} params.to the `to` filter date
+   * @param {number} params.tripMergeId the id of a merge trip
+   */
+  shareTrip (id: number, params: { tripId: number } | { from: Date, to: Date } | { tripMergeId: number }) {
+    const { baseUri } = this
+    const uri = `/${baseUri}/${id}/share/trip`
+
+    return this.request.send(uri, formatDateParam(params), 'POST')
   }
 }

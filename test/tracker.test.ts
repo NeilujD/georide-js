@@ -72,6 +72,86 @@ describe('tracker endpoint', () => {
     })
   })
 
+  describe('share a trip', () => {
+    it('should share a trip using a trip id', async () => {
+      const trackerId = 1
+      const tripId = 1
+
+      const data = {
+        url: '<shared_url>',
+        sharedId: '123'
+      }
+
+      scope.post(`/tracker/${trackerId}/share/trip`, {
+        tripId
+      }).reply(200, data)
+
+      const sharedTrip = await client.Tracker.shareTrip(trackerId, { tripId })
+
+      assert.deepEqual(sharedTrip, data)
+    })
+
+    it('should share a trip using a from date and a to date', async () => {
+      const trackerId = 1
+
+      const data = {
+        url: '<shared_url>',
+        sharedId: '123'
+      }
+
+      scope.post(`/tracker/${trackerId}/share/trip`, {
+        from: moment(from).format('YYYY-MM-DD'), 
+        to: moment(to).format('YYYY-MM-DD')
+      }).reply(200, data)
+
+      const sharedTrip = await client.Tracker.shareTrip(trackerId, { from, to })
+
+      assert.deepEqual(sharedTrip, data)
+    })
+
+    it('should share a trip using a merge trip id', async () => {
+      const trackerId = 1
+      const tripMergeId = 1
+
+      const data = {
+        url: '<shared_url>',
+        sharedId: '123'
+      }
+
+      scope.post(`/tracker/${trackerId}/share/trip`, {
+        tripMergeId
+      }).reply(200, data)
+
+      const sharedTrip = await client.Tracker.shareTrip(trackerId, { tripMergeId })
+
+      assert.deepEqual(sharedTrip, data)
+    })
+  })
+
+  describe('toggle a tracker lock', () => {
+    it('should lock if tracker is unlocked', async () => {
+      const trackerId = 1
+
+      const locked = true
+
+      scope.post(`/tracker/${trackerId}/toggleLock`).reply(200, { locked: !locked })
+
+      const result = await client.Tracker.toggle(trackerId)
+
+      assert.deepEqual(result, { locked: !locked })
+    })
+  })
+
+  describe('unlock the tracker', () => {
+    it('should unlock the tracker', async () => {
+      const trackerId = 1
+
+      scope.post(`/tracker/${trackerId}/unlock`).reply(200, {ok: true})
+
+      await client.Tracker.unlock(trackerId)
+    })
+  })
+
   after(()=>{
     nock.cleanAll()
   })

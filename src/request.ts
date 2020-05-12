@@ -8,9 +8,12 @@ const GEORIDE_MISSING_TOKEN_ERROR = 'Aucun motard trouvé à cette adresse ⭕�
 const INTERN_MISSING_TOKEN_ERROR = 'missing_valid_token'
 const GEORIDE_INVALID_LOGIN = 'InvalidLogin'
 const INTERN_INVALID_LOGIN = 'invalid_login'
+const GEORIDE_INVALID_REQUEST = 'InvalidRequest'
+const INTERN_INVALID_REQUEST = 'invalid_request'
 const ERRORS:{[key: string]: string} = {}
 ERRORS[GEORIDE_MISSING_TOKEN_ERROR] = INTERN_MISSING_TOKEN_ERROR
 ERRORS[GEORIDE_INVALID_LOGIN] = INTERN_INVALID_LOGIN
+ERRORS[GEORIDE_INVALID_REQUEST] = INTERN_INVALID_REQUEST
 export { 
   GEORIDE_MISSING_TOKEN_ERROR,
   INTERN_MISSING_TOKEN_ERROR, 
@@ -85,7 +88,7 @@ export default class Request {
       const response = await fetch(url, { method, body, headers })
       const data = await response.json()
 
-      // Check if `InvalidRequest` is returned
+      // Check if an error has been thrown
       if (data.error) {
         throw new Error(ERRORS[data.error] ? ERRORS[data.error] : data.error)
       }
@@ -135,12 +138,12 @@ export default class Request {
           ...options,
           body: JSON.stringify(params)
         }
-      
-      if (params)
+      else if (params)
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
       try {
         const response = await fetch(url, options)
+        if (response.status === 204) return
         const data = await response.json()
 
         if (data.errors && data.errors.message == GEORIDE_MISSING_TOKEN_ERROR) throw new Error(INTERN_MISSING_TOKEN_ERROR)

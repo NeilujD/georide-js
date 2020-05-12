@@ -69,7 +69,6 @@
   "typedocOptions": {
     "inputFiles": ["./src"],
     "mode": "modules",
-    "out": "docs",
-    "entryPoint": "georide"
+    "out": "docs"
   }
 }

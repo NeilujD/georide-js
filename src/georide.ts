@@ -2,6 +2,7 @@ import Config from './config'
 import Request, { Token } from './request'
 import User from './endpoints/user'
 import Tracker from './endpoints/tracker'
+import Trip from './endpoints/trip'
 
 
 const MESSAGE = 'message'
@@ -20,6 +21,7 @@ export default class Georide {
   request: Request
   User: User
   Tracker: Tracker
+  Trip: Trip
 
   /**
    * Create the Georide client
@@ -39,6 +41,7 @@ export default class Georide {
 
     this.User = new User(this.config)
     this.Tracker = new Tracker(this.config)
+    this.Trip = new Trip(this.config)
   }
 
   /**

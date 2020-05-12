@@ -1,6 +1,11 @@
+[![<ORG_NAME>](https://circleci.com/gh/NeilujD/georide-js.svg?style=shield)](<LINK>)
+
+
 # georide-js
 
 `georide-js` is a tiny JavaScript API client for [Georide](https://georide.fr/) which is awesome french tech, mostly if you are a motorcycle rider.
+
+See full API documentation [here](https://neilujd.github.io/georide-js/).
 
 
 ## Georide
@@ -9,6 +14,9 @@ Georide a french company that provide security and GPS features for motorcycle.
 To use it you need to buy from them a small box full of sensors that you put on your bike directly powered by its battery.
 
 To make the UX great they also provide a mobile app (iOS and Android supported) and they made their API public so the users/customers can play with it.
+
+See Georide API documentation [here](https://api.georide.fr/).
+See Georide services status page [here](https://status.georide.fr/).
 
 
 ## Features
@@ -34,8 +42,8 @@ Example :
 const Georide = require('georide-js').default
 
 
-const EMAIL = '<your_georide_email_address>'
-const PASSWORD = '<your_georide_password>'
+const EMAIL = process.env.EMAIL
+const PASSWORD = process.env.PASSWORD
 
 const main = async () => {
   // Create the client
@@ -44,13 +52,32 @@ const main = async () => {
   // Authenticate the user
   const token = await client.login()
 
-  // Retrieve the user infos
-  const info = await client.User.info()
+  // Retrieve the user info
+  const info = await client.Tracker.lock()
 
+  // Retrieve my trackers
+  const trackers = await client.User.trackers()
+  const myTrackers = trackers.filter(t => t.role === 'owner')
+  const myTrackerId = myTrackers[0].trackerId
+
+  // Retrieve my tracker trips
+  const trips = await client.Tracker.trips(myTrackerId, new Date('May 01, 2019 00:00:00'), new Date())
+
+  // Lock a tracker
+  await client.Tracker.lock(myTrackerId)
+
+  // Toggle a tracker lock
+  const { locked } = await client.Tracker.toggle(myTrackerId)
+
+  // Share a trip
+  const { url, shareId } = await client.Tracker.shareTrip(myTrackerId, {tripId: trips[0].id})
+  
   // Subscribe to the `position` event
   client.onPosition(message => {
     const { trackerId, latitude, longitude, moving } = message
   })
+
+  process.exit()
 }
 
 main()
@@ -61,3 +88,17 @@ main()
 ```sh
 npm test
 ```
+
+
+## Contributing
+
+### Install
+
+```sh
+git clone git@github.com:NeilujD/next-blog.git
+docker build ./
+```
+
+### Tips
+
+* Update tests if needed
