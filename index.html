@@ -106,22 +106,30 @@
 <span class="hljs-keyword">const</span> main = <span class="hljs-keyword">async</span> () =&gt; {
   <span class="hljs-comment">// Create the client</span>
   <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Georide(EMAIL, PASSWORD)
+
   <span class="hljs-comment">// Authenticate the user</span>
   <span class="hljs-keyword">const</span> token = <span class="hljs-keyword">await</span> client.login()
+
   <span class="hljs-comment">// Retrieve the user info</span>
   <span class="hljs-keyword">const</span> info = <span class="hljs-keyword">await</span> client.Tracker.lock()
+
   <span class="hljs-comment">// Retrieve my trackers</span>
   <span class="hljs-keyword">const</span> trackers = <span class="hljs-keyword">await</span> client.User.trackers()
   <span class="hljs-keyword">const</span> myTrackers = trackers.filter(<span class="hljs-function"><span class="hljs-params">t</span> =&gt;</span> t.role === <span class="hljs-string">'owner'</span>)
   <span class="hljs-keyword">const</span> myTrackerId = myTrackers[<span class="hljs-number">0</span>].trackerId
+
   <span class="hljs-comment">// Retrieve my tracker trips</span>
-  <span class="hljs-keyword">const</span> trips = <span class="hljs-keyword">await</span> client.Tracker.trips(myTrackerId, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'May 01, 2019 00:00:00'</span>), <span class="hljs-built_in">Date</span>.now())
+  <span class="hljs-keyword">const</span> trips = <span class="hljs-keyword">await</span> client.Tracker.trips(myTrackerId, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'May 01, 2019 00:00:00'</span>), <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>())
+
   <span class="hljs-comment">// Lock a tracker</span>
   <span class="hljs-keyword">await</span> client.Tracker.lock(myTrackerId)
+
   <span class="hljs-comment">// Toggle a tracker lock</span>
   <span class="hljs-keyword">const</span> { locked } = <span class="hljs-keyword">await</span> client.Tracker.toggle(myTrackerId)
+
   <span class="hljs-comment">// Share a trip</span>
   <span class="hljs-keyword">const</span> { url, shareId } = <span class="hljs-keyword">await</span> client.Tracker.shareTrip(myTrackerId, {<span class="hljs-attr">tripId</span>: trips[<span class="hljs-number">0</span>].id})
+
   <span class="hljs-comment">// Subscribe to the `position` event</span>
   client.onPosition(<span class="hljs-function"><span class="hljs-params">message</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> { trackerId, latitude, longitude, moving } = message
