@@ -31,7 +31,7 @@ jobs:
           at: ~/repo
       - run:
           name: Build docs
-          command: npm doc
+          command: npm run doc
       - persist_to_workspace:
           root: ~/repo
           paths: docs
