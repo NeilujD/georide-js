@@ -15,7 +15,8 @@ To use it you need to buy from them a small box full of sensors that you put on 
 
 To make the UX great they also provide a mobile app (iOS and Android supported) and they made their API public so the users/customers can play with it.
 
-See Georde API documentation [here](https://api.georide.fr/).
+See Georide API documentation [here](https://api.georide.fr/).
+See Georide services status page [here](https://status.georide.fr/).
 
 
 ## Features
@@ -41,23 +42,33 @@ Example :
 const Georide = require('georide-js').default
 
 
-const EMAIL = '<your_georide_email_address>'
-const PASSWORD = '<your_georide_password>'
+const EMAIL = process.env.EMAIL
+const PASSWORD = process.env.PASSWORD
 
 const main = async () => {
   // Create the client
   const client = new Georide(EMAIL, PASSWORD)
-
   // Authenticate the user
   const token = await client.login()
-
-  // Retrieve the user infos
-  const info = await client.User.info()
-
+  // Retrieve the user info
+  const info = await client.Tracker.lock()
+  // Retrieve my trackers
+  const trackers = await client.User.trackers()
+  const myTrackers = trackers.filter(t => t.role === 'owner')
+  const myTrackerId = myTrackers[0].trackerId
+  // Retrieve my tracker trips
+  const trips = await client.Tracker.trips(myTrackerId, new Date('May 01, 2019 00:00:00'), Date.now())
+  // Lock a tracker
+  await client.Tracker.lock(myTrackerId)
+  // Share a trip
+  const { url, shareId } = await client.Tracker.shareTrip(myTrackerId, {tripId: trips[0].id})
   // Subscribe to the `position` event
   client.onPosition(message => {
+    console.log(message)
     const { trackerId, latitude, longitude, moving } = message
   })
+
+  process.exit()
 }
 
 main()
