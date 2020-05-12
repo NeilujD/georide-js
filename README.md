@@ -80,3 +80,17 @@ main()
 ```sh
 npm test
 ```
+
+
+## Contributing
+
+### Install
+
+```sh
+git clone git@github.com:NeilujD/next-blog.git
+docker build ./
+```
+
+### Tips
+
+* Update tests if needed
