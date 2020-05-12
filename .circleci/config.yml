@@ -31,7 +31,7 @@ jobs:
           at: ~/repo
       - run:
           name: Build docs
-          command: npm run doc
+          command: npm run doc:build
       - persist_to_workspace:
           root: ~/repo
           paths: docs
@@ -53,7 +53,7 @@ jobs:
             git config user.name "NeilujD"
       - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --message "[skip ci] Updates" --dist docs
+          command: npm run doc:deploy
   publish:
     executor:
       name: node/default
