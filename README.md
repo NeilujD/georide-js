@@ -60,11 +60,12 @@ const main = async () => {
   const trips = await client.Tracker.trips(myTrackerId, new Date('May 01, 2019 00:00:00'), Date.now())
   // Lock a tracker
   await client.Tracker.lock(myTrackerId)
+  // Toggle a tracker lock
+  const { locked } = await client.Tracker.toggle(myTrackerId)
   // Share a trip
   const { url, shareId } = await client.Tracker.shareTrip(myTrackerId, {tripId: trips[0].id})
   // Subscribe to the `position` event
   client.onPosition(message => {
-    console.log(message)
     const { trackerId, latitude, longitude, moving } = message
   })
 

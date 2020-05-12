@@ -129,6 +129,20 @@ describe('tracker endpoint', () => {
     })
   })
 
+  describe('toggle a tracker lock', () => {
+    it('should lock if tracker is unlocked', async () => {
+      const trackerId = 1
+
+      const locked = true
+
+      scope.post(`/tracker/${trackerId}/toggleLock`).reply(200, { locked: !locked })
+
+      const result = await client.Tracker.toggle(trackerId)
+
+      assert.deepEqual(result, { locked: !locked })
+    })
+  })
+
   after(()=>{
     nock.cleanAll()
   })

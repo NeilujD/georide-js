@@ -47,12 +47,23 @@ export default class Tracker extends BaseEndpoint {
 
   /**
    * Lock the tracker
-   * @param {string} trackerId 
-   * @return {Promise<{}>} a promise to the result
+   * @param {number} trackerId 
    */
-  lock (id: number): Promise<{}> {
+  lock (id: number) {
     const { baseUri } = this
     const uri = `/${baseUri}/${id}/lock`
+
+    this.request.send(uri, null, 'POST')
+  }
+
+  /**
+   * Toggle the tracker lock
+   * @param {number} id the tracker id
+   * @return {Promise<{}>} a promise to the result
+   */
+  toggle (id: number): Promise<{}> {
+    const { baseUri } = this
+    const uri = `/${baseUri}/${id}/toggleLock`
 
     return this.request.send(uri, null, 'POST')
   }
