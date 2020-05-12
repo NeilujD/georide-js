@@ -44,8 +44,7 @@ jobs:
           at: ~/repo
       - add_ssh_keys:
           fingerprints:
-            - "a1:c2:ea:5f:1d:3d:cc:66:75:09:69:15:cf:23:6c:77"
-      - checkout
+            - "7e:f1:cd:6b:3e:c3:e1:a0:87:22:5b:a3:88:29:38:3e"
       - run:
           name: Install and configure dependencies
           command: |
