@@ -23,7 +23,8 @@
     "build:esm": "tsc --module ES2015 --target ES2015 --outDir dist/esm",
     "build:cjs": "tsc --module commonjs --target ES2015 --outDir dist/cjs",
     "clean-and-build": "rm -r dist && npm run build",
-    "doc": "typedoc",
+    "doc:build": "typedoc",
+    "doc:deploy": "gh-pages --message \"[skip ci] Updates\" --dist docs",
     "test": "mocha -r ts-node/register --extension ts"
   },
   "keywords": [
@@ -44,6 +45,7 @@
     "@types/node-fetch": "^2.5.7",
     "@types/socket.io-client": "^1.4.32",
     "chai": "^4.2.0",
+    "gh-pages": "^2.2.0",
     "mocha": "^7.1.2",
     "nock": "^12.0.3",
     "ts-node": "^8.10.1",
