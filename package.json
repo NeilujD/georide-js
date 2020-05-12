@@ -22,6 +22,7 @@
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --module ES2015 --target ES2015 --outDir dist/esm",
     "build:cjs": "tsc --module commonjs --target ES2015 --outDir dist/cjs",
+    "clean-and-build": "rm -r dist && npm run build",
     "doc": "typedoc",
     "test": "mocha -r ts-node/register --extension ts"
   },

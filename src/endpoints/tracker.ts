@@ -46,7 +46,7 @@ export default class Tracker extends BaseEndpoint {
   }
 
   /**
-   * Locl the tracker
+   * Lock the tracker
    * @param {string} trackerId 
    * @return {Promise<{}>} a promise to the result
    */
@@ -55,5 +55,21 @@ export default class Tracker extends BaseEndpoint {
     const uri = `/${baseUri}/${id}/lock`
 
     return this.request.send(uri, null, 'POST')
+  }
+
+  /**
+   * Share a trip
+   * @param {number} id the tracker id
+   * @param {object} params the action params
+   * @param {number} params.tripId the id of the trip you want to share
+   * @param {Date} params.from the `from` filter date
+   * @param {Date} params.to the `to` filter date
+   * @param {number} params.tripMergeId the id of a merge trip
+   */
+  shareTrip (id: number, params: { tripId: number } | { from: Date, to: Date } | { tripMergeId: number }) {
+    const { baseUri } = this
+    const uri = `/${baseUri}/${id}/share/trip`
+
+    return this.request.send(uri, formatDateParam(params), 'POST')
   }
 }
