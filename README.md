@@ -5,6 +5,8 @@
 
 `georide-js` is a tiny JavaScript API client for [Georide](https://georide.fr/) which is awesome french tech, mostly if you are a motorcycle rider.
 
+See full API documentation [here](https://neilujd.github.io/georide-js/).
+
 
 ## Georide
 
@@ -12,6 +14,8 @@ Georide a french company that provide security and GPS features for motorcycle.
 To use it you need to buy from them a small box full of sensors that you put on your bike directly powered by its battery.
 
 To make the UX great they also provide a mobile app (iOS and Android supported) and they made their API public so the users/customers can play with it.
+
+See Georde API documentation [here](https://api.georide.fr/).
 
 
 ## Features
