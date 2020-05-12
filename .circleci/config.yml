@@ -22,6 +22,38 @@ jobs:
             - persist_to_workspace:
                 root: ~/repo
                 paths: .
+  docs-build:
+    executor:
+      name: node/default
+    working_directory: ~/repo
+    steps: 
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Build docs
+          command: npm doc
+      - persist_to_workspace:
+          root: ~/repo
+          paths: docs
+  docs-deploy:
+    executor:
+      name: node/default
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - add_ssh_keys:
+          fingerprints:
+            - "a1:c2:ea:5f:1d:3d:cc:66:75:09:69:15:cf:23:6c:77"
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm i -g --silent gh-pages
+            git config user.email "julien.collard14@gmail.com"
+            git config user.name "NeilujD"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --message "[skip ci] Updates" --dist docs
   publish:
     executor:
       name: node/default
@@ -41,6 +73,18 @@ workflows:
             filters:
               tags:
                 only: /.*/
+        - docs-build:
+            requires:
+              - build-and-test
+            filters:
+              branches:
+                only: master
+        - docs-deploy:
+            requires:
+              - docs-build
+            filters:
+              branches:
+                only: master
         - publish:
             requires:
               - build-and-test
