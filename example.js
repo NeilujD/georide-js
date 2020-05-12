@@ -18,13 +18,15 @@ const main = async () => {
   const myTrackers = trackers.filter(t => t.role === 'owner')
   const myTrackerId = myTrackers[0].trackerId
   // Retrieve my tracker trips
-  const trips = await client.Tracker.trips(myTrackerId, new Date('May 01, 2019 00:00:00'), Date.now())
+  const trips = await client.Tracker.trips(myTrackerId, new Date('May 1, 2019 00:00:00'), new Date())
   // Lock a tracker
   await client.Tracker.lock(myTrackerId)
   // Toggle a tracker lock
   const { locked } = await client.Tracker.toggle(myTrackerId)
   // Share a trip
   const { url, shareId } = await client.Tracker.shareTrip(myTrackerId, {tripId: trips[0].id})
+  // Retrieve a shared trip
+  const sharedTrips = await client.Trip.get(shareId)
   // Subscribe to the `position` event
   client.onPosition(message => {
     const { trackerId, latitude, longitude, moving } = message

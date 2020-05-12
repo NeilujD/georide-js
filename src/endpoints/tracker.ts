@@ -19,6 +19,7 @@ export default class Tracker extends BaseEndpoint {
 
   /**
    * Request the tracker trips list between two dates
+   * @param {number} id the tracker id
    * @param {Date} from the start date filter
    * @param {Date} to the end date filter
    * @return {Promise<{}>} a promise to the trips list
@@ -33,6 +34,7 @@ export default class Tracker extends BaseEndpoint {
 
   /**
    * Request the tracker positions between two dates
+   * @param {number} id the tracker id
    * @param {Date} from the start date filter
    * @param {Date} to the end date filter
    * @return {Promise<{}>} a promise to the positions data

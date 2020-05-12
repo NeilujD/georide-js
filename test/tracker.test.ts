@@ -93,8 +93,6 @@ describe('tracker endpoint', () => {
 
     it('should share a trip using a from date and a to date', async () => {
       const trackerId = 1
-      const from = new Date()
-      const to = new Date()
 
       const data = {
         url: '<shared_url>',
@@ -102,7 +100,8 @@ describe('tracker endpoint', () => {
       }
 
       scope.post(`/tracker/${trackerId}/share/trip`, {
-        from: moment(from).format('YYYY-MM-DD'), to: moment(to).format('YYYY-MM-DD')
+        from: moment(from).format('YYYY-MM-DD'), 
+        to: moment(to).format('YYYY-MM-DD')
       }).reply(200, data)
 
       const sharedTrip = await client.Tracker.shareTrip(trackerId, { from, to })
