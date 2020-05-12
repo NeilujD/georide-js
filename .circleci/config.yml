@@ -45,9 +45,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "a1:c2:ea:5f:1d:3d:cc:66:75:09:69:15:cf:23:6c:77"
-      - run:
-          name: Avoid hosts unknown for github
-          command: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - checkout
       - run:
           name: Install and configure dependencies
           command: |
