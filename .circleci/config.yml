@@ -48,7 +48,6 @@ jobs:
       - run:
           name: Install and configure dependencies
           command: |
-            npm i -g --silent gh-pages
             git config user.email "julien.collard14@gmail.com"
             git config user.name "NeilujD"
       - run:
