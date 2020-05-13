@@ -54,8 +54,8 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "cross-fetch": "^3.0.4",
     "moment": "^2.25.3",
-    "node-fetch": "^2.6.0",
     "socket.io": "^2.3.0"
   }
 }

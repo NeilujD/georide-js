@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import io from 'socket.io-client'
-import fetch from 'node-fetch'
+import fetch from 'cross-fetch'
 
 import Config from './config'
 
@@ -142,7 +142,7 @@ class Request {
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
       try {
-        const response = await fetch(url, options)
+        const response = await fetch(url.toString(), options)
         if (response.status === 204) return
         const data = await response.json()
 
