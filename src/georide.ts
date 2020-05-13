@@ -9,14 +9,13 @@ const MESSAGE = 'message'
 const DEVICE = 'device'
 const POSITION = 'position'
 const ALARM = 'alarm'
-export { MESSAGE, DEVICE, POSITION, ALARM }
 
 /**
  * JavaScript Georide client class
  * @property {Config} config the client config
  * @property {Request} request the request helper
  */
-export default class Georide {
+class Georide {
   config: Config
   request: Request
   User: User
@@ -84,3 +83,6 @@ export default class Georide {
     this.request.subscribe(ALARM, callback)
   }
 }
+export default Georide
+// Better export for `cjs`
+export { Georide as Client }

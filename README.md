@@ -39,7 +39,7 @@ npm i -s georide-js
 Example :
 
 ```js
-const Georide = require('georide-js').default
+const { Client } = require('georide-js')
 
 
 const EMAIL = process.env.EMAIL
@@ -47,7 +47,7 @@ const PASSWORD = process.env.PASSWORD
 
 const main = async () => {
   // Create the client
-  const client = new Georide(EMAIL, PASSWORD)
+  const client = new Client(EMAIL, PASSWORD)
 
   // Authenticate the user
   const token = await client.login()

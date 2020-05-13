@@ -60,7 +60,7 @@ export class Token {
  * @property {Config} config the config neened to perform requests
  * @property {Token} token the required Georide token 
  */
-export default class Request {
+class Request {
   config: Config
 
   /**
@@ -215,3 +215,5 @@ export default class Request {
     this.config.socket.on(event, (message: object) => callback(message))
   }
 }
+export default Request
+export { Request }

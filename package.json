@@ -8,7 +8,7 @@
     "url": "git://github.com/NeilujD/georide-js.git"
   },
   "main": "dist/cjs/georide.js",
-  "module": "dist/esm/georide.js",
+  "browser": "dist/esm/georide.js",
   "files": [
     "dist/**/*",
     "src/**/*",

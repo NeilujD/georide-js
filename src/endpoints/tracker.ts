@@ -7,7 +7,7 @@ import { formatDateParam } from '../helper'
  * Tracker endpoint class
  * @category Endpoint
  */
-export default class Tracker extends BaseEndpoint {
+class Tracker extends BaseEndpoint {
   /**
    * Create a `Tracker` endpoint instance
    * @param {Config} config 
@@ -97,3 +97,5 @@ export default class Tracker extends BaseEndpoint {
     return this.request.send(uri, formatDateParam(params), 'POST')
   }
 }
+export default Tracker
+export { Tracker }

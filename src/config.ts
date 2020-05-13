@@ -11,7 +11,7 @@ import { Token } from './request'
  * @property {string} protocol the Georide API protocol
  * @property {string} authUri the Georide API authentication endpoint uri
  */
-export default class Config {
+class Config {
   email: string
   password: string
   host: string
@@ -60,3 +60,5 @@ export default class Config {
     this.socket = socket
   }
 }
+export default Config
+export { Config }

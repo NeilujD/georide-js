@@ -1,6 +1,6 @@
 // To run it: `EMAIL=<your_georide_email_address> PASSWORD=<your_georide_password> node ./example.mjs
 
-const Georide = require('./dist/cjs/georide').default
+const Georide = require('./dist/cjs/georide').Client
 
 
 const EMAIL = process.env.EMAIL
