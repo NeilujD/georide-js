@@ -78,8 +78,20 @@ class Config {
    * @param {Token} token
    */
   setToken (token: Token | null) {
+    // Update token in storage
     if (!token) this.storage.delete(this.storageTokenKey)
     else this.storage.set(this.storageTokenKey, JSON.stringify(token))
+
+    // Update token in socket client
+    if (this.socket)
+      this.socket.io.opts.transportOptions = {
+        ...this.socket.io.opts.transportOptions,
+        polling: {
+          extraHeaders: {
+            token: token ? token.authToken : null
+          }
+        }
+      }
   }
 
   /**
