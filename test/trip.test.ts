@@ -19,7 +19,7 @@ describe('trip endpoint', () => {
   }
 
   beforeEach(() => {
-    client.config.token = new Token(tokenData)
+    client.config.setToken(new Token(tokenData))
   })
 
   describe('get a shared trip', () => {
@@ -32,6 +32,10 @@ describe('trip endpoint', () => {
   
       const result = await client.Trip.get(shareId)
       assert.deepEqual(result, data)
+    })
+
+    after(()=>{
+      nock.cleanAll()
     })
   })
 })

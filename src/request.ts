@@ -44,7 +44,14 @@ export class Token {
    * @param {boolean} data.isAdmin determine is user has admin right on Georide API
    * @param {string} data.authToken the access token 
    */
-  constructor (data: { id: number, email: string, isAdmin: boolean, authToken: string}) {
+  constructor (
+    data: { 
+      id: number, 
+      email: string, 
+      isAdmin: boolean, 
+      authToken: string
+    }
+  ) {
     const { id, email, isAdmin, authToken } = data
 
     this.id = id
@@ -122,8 +129,13 @@ class Request {
    * @param method 
    * @return {Promise<{}>} a promise to the data
    */
-  async send (uri: string, params: {[key: string]: any} | null = null, method: string = 'GET'): Promise<{}> {
-    const { protocol, host, token } = this.config
+  async send (
+    uri: string, 
+    params: {[key: string]: any} | null = null, 
+    method: string = 'GET'
+  ): Promise<{}> {
+    const { protocol, host } = this.config
+    const token = this.config.getToken()
 
     const req = async (token: Token) => {
       const headers = { 
@@ -140,6 +152,8 @@ class Request {
         }
       else if (params)
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+      console.log(url.toString())
 
       try {
         const response = await fetch(url.toString(), options)
@@ -188,7 +202,11 @@ class Request {
       if (data.error) throw new Error(data.error)
       else if (data.errors && data.errors.message === GEORIDE_MISSING_TOKEN_ERROR) throw new Error(INTERN_MISSING_TOKEN_ERROR)
       
-      this.config.token!.authToken = data.authToken
+      const { id, email, isAdmin } = token
+      const { authToken } = data
+      this.config.setToken(new Token({
+        id, email, isAdmin, authToken
+      }))
 
       // Update the socket.io client
       this.config.socket.io.opts.transportOptions = {
@@ -200,7 +218,7 @@ class Request {
         }
       }
 
-      return this.config.token!
+      return this.config.getToken()!
     } catch (e) {
       throw e
     }

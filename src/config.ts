@@ -1,6 +1,7 @@
 import { Socket } from 'socket.io-client'
 
 import { Token } from './request'
+import { StorageFactory } from './storage'
 
 
 /**
@@ -10,6 +11,8 @@ import { Token } from './request'
  * @property {string} host the Georide API host
  * @property {string} protocol the Georide API protocol
  * @property {string} authUri the Georide API authentication endpoint uri
+ * @property {object} storage the storage used to store the token 
+ * @property {string} storageTokenKey the storage key to the token
  */
 class Config {
   email: string
@@ -18,8 +21,9 @@ class Config {
   protocol: string
   authUri: string
   newTokenUri: string
-  token: Token | null
   socket!: typeof Socket
+  storage: any
+  storageTokenKey: string
 
   /**
    * Create a config instance
@@ -30,26 +34,55 @@ class Config {
    * @param {string} options.protocol the Georide API protocol
    * @param {string} options.authUri the Georide API authentication endpoint uri
    * @param {string} options.newTokenUri the Georide API new token request uri
+   * @param {object} options.storage the storage strategy
+   * @param {string} options.storageTokenKey the storage key to store the token
    */
-  constructor (options: { email: string, password: string, host?: string, protocol?: string, auth_uri?: string, new_token_uri?: string }) {
-    const { email, password, host = 'api.georide.fr', protocol = 'https', auth_uri = '/user/login', new_token_uri = '/user/new-token'} = options
+  constructor (
+    options: { 
+      email: string, 
+      password: string, 
+      host?: string, 
+      protocol?: string, 
+      authUri?: string, 
+      newTokenUri?: string, 
+      storage?: object,
+      storageTokenKey?: string
+    }
+  ) {
+    const { 
+      email, 
+      password, 
+      host = 'api.georide.fr', 
+      protocol = 'https', 
+      authUri = '/user/login', 
+      newTokenUri = '/user/new-token', 
+      storage = new StorageFactory(),
+      storageTokenKey = 'georide_token'
+    } = options
 
     this.email = email
     this.password = password
 
     this.host = host
     this.protocol = protocol
-    this.authUri = auth_uri
-    this.newTokenUri = new_token_uri
+    this.authUri = authUri
+    this.newTokenUri = newTokenUri
 
-    this.token = null
+    this.storage = storage
+    this.storageTokenKey = storageTokenKey
   }
 
   /** Setter for the token
    * @param {Token} token
    */
   setToken (token: Token | null) {
-    this.token = token
+    if (!token) this.storage.delete(this.storageTokenKey)
+    else this.storage.set(this.storageTokenKey, JSON.stringify(token))
+  }
+
+  getToken (): Token | null {
+    const t = this.storage.get(this.storageTokenKey)
+    return t ? new Token(JSON.parse(t)) : null
   }
 
   /**

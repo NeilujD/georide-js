@@ -40,13 +40,17 @@ describe('Georide authentication', () => {
         assert.equal(e.message, ERRORS[GEORIDE_INVALID_LOGIN])
       }
     })
+
+    after(()=>{
+      nock.cleanAll()
+    })
   })
 
   describe('authorisation header', () => {
     const infoData = {ok: true}
 
     it('should try to authenticate if no token exist', async () => {
-      client.config.token = null
+      client.config.setToken(null)
       
       scope.post('/user/login', { email: emailAddress, password }).reply(200, tokenData)
       scope.get('/user').reply(200, infoData)
@@ -56,7 +60,7 @@ describe('Georide authentication', () => {
     })
 
     it('should try to generate a new token if token is not valid', async () => {
-      client.config.token = new Token(tokenData)
+      client.config.setToken(new Token(tokenData))
 
       scope.get('/user').matchHeader('authorization', `Bearer ${tokenData.authToken}`).reply(200, {
         errors: { message: GEORIDE_MISSING_TOKEN_ERROR }
@@ -70,11 +74,11 @@ describe('Georide authentication', () => {
 
       const info = await client.User.info()
       assert.deepEqual(info, infoData)
-      assert.propertyVal(client.config.token, 'authToken', authToken)
+      assert.propertyVal(client.config.getToken(), 'authToken', authToken)
     })
 
     it('throw an error if no valid token is given', async () => {
-      client.config.token = null
+      client.config.setToken(null)
 
       scope.post('/user/login', { email: emailAddress, password }).reply(200, tokenData)
       scope.get('/user').reply(200, {
@@ -87,9 +91,9 @@ describe('Georide authentication', () => {
         assert.equal(e.message, ERRORS[GEORIDE_MISSING_TOKEN_ERROR])
       }
     })
-  })
 
-  after(()=>{
-    nock.cleanAll()
+    after(()=>{
+      nock.cleanAll()
+    })
   })
 })

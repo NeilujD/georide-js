@@ -19,7 +19,7 @@ describe('user endpoint', () => {
   }
 
   beforeEach(() => {
-    client.config.token = new Token(tokenData)
+    client.config.setToken(new Token(tokenData))
   })
 
   describe('get user info', () => {
@@ -41,6 +41,10 @@ describe('user endpoint', () => {
       const info = await client.User.info()
       assert.deepEqual(info, infoData)
     })
+
+    after(()=>{
+      nock.cleanAll()
+    })
   })
 
   describe('get user trackers list', () => {
@@ -56,9 +60,9 @@ describe('user endpoint', () => {
       const trackers = await client.User.trackers()
       assert.deepEqual(trackersData, trackers)
     })
-  })
 
-  after(()=>{
-    nock.cleanAll()
+    after(()=>{
+      nock.cleanAll()
+    })
   })
 })
