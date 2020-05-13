@@ -1,7 +1,7 @@
 import { Socket } from 'socket.io-client'
 
 import { Token } from './request'
-import { StorageFactory } from './storage'
+import { StorageFactory, MemoryStorageFactory } from './storage'
 
 
 /**
@@ -11,6 +11,7 @@ import { StorageFactory } from './storage'
  * @property {string} host the Georide API host
  * @property {string} protocol the Georide API protocol
  * @property {string} authUri the Georide API authentication endpoint uri
+ * @property {string} newTokenUri the Georide API refresh token endpoint uri
  * @property {object} storage the storage used to store the token 
  * @property {string} storageTokenKey the storage key to the token
  */
@@ -22,7 +23,7 @@ class Config {
   authUri: string
   newTokenUri: string
   socket!: typeof Socket
-  storage: any
+  storage: StorageFactory | MemoryStorageFactory
   storageTokenKey: string
 
   /**
@@ -33,7 +34,7 @@ class Config {
    * @param {string} options.host the Georide API host
    * @param {string} options.protocol the Georide API protocol
    * @param {string} options.authUri the Georide API authentication endpoint uri
-   * @param {string} options.newTokenUri the Georide API new token request uri
+   * @param {string} options.newTokenUri the Georide API new token endpoint uri
    * @param {object} options.storage the storage strategy
    * @param {string} options.storageTokenKey the storage key to store the token
    */
@@ -45,7 +46,7 @@ class Config {
       protocol?: string, 
       authUri?: string, 
       newTokenUri?: string, 
-      storage?: object,
+      storage?: StorageFactory | MemoryStorageFactory,
       storageTokenKey?: string
     }
   ) {
@@ -72,7 +73,8 @@ class Config {
     this.storageTokenKey = storageTokenKey
   }
 
-  /** Setter for the token
+  /** 
+   * Setter for the token
    * @param {Token} token
    */
   setToken (token: Token | null) {
@@ -80,6 +82,10 @@ class Config {
     else this.storage.set(this.storageTokenKey, JSON.stringify(token))
   }
 
+  /**
+   * Getter for the token
+   * @return {Token | null}
+   */
   getToken (): Token | null {
     const t = this.storage.get(this.storageTokenKey)
     return t ? new Token(JSON.parse(t)) : null

@@ -3,6 +3,7 @@ import Request, { Token } from './request'
 import User from './endpoints/user'
 import Tracker from './endpoints/tracker'
 import Trip from './endpoints/trip'
+import { StorageFactory, MemoryStorageFactory } from './storage'
 
 
 const MESSAGE = 'message'
@@ -18,7 +19,7 @@ const ALARM = 'alarm'
 class Georide {
   config: Config
   request: Request
-  storage: Object
+  storage: StorageFactory | MemoryStorageFactory
   User: User
   Tracker: Tracker
   Trip: Trip
@@ -32,7 +33,7 @@ class Georide {
    * @param {string} options.protocol the Georide API protocol
    * @param {string} options.authUri the Georide API authentication uri
    * @param {string} options.newTokenUri the Georide API refresh token uri
-   * @param {object} options.storage the storage strategy
+   * @param {StorageFactory | MemoryStorageFactory} options.storage the storage strategy
    * @param {object} options.storageTokenKey the storage key to the token
    */
   constructor (
@@ -43,7 +44,7 @@ class Georide {
       protocol: string, 
       authUri: string, 
       newTokenUri: string, 
-      storage: object,
+      storage: StorageFactory | MemoryStorageFactory,
       storageTokenKey: string
     } | {} = {}
   ) {
