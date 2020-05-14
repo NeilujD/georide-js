@@ -90,6 +90,21 @@
 						<dt>property</dt>
 						<dd><p>{string} authUri the Georide API authentication endpoint uri</p>
 						</dd>
+						<dt>property</dt>
+						<dd><p>{string} newTokenUri the Georide API refresh token endpoint uri</p>
+						</dd>
+						<dt>property</dt>
+						<dd><p>{Socket} socket the socket client</p>
+						</dd>
+						<dt>property</dt>
+						<dd><p>{boolean} supportSocket define if client should support socket client connection</p>
+						</dd>
+						<dt>property</dt>
+						<dd><p>{object} storage the storage used to store the token</p>
+						</dd>
+						<dt>property</dt>
+						<dd><p>{string} storageTokenKey the storage key to the token</p>
+						</dd>
 					</dl>
 				</div>
 			</section>
@@ -121,12 +136,15 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#password" class="tsd-kind-icon">password</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#protocol" class="tsd-kind-icon">protocol</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#socket" class="tsd-kind-icon">socket</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#token" class="tsd-kind-icon">token</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#storage" class="tsd-kind-icon">storage</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#storagetokenkey" class="tsd-kind-icon">storage<wbr>Token<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#supportsocket" class="tsd-kind-icon">support<wbr>Socket</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_config_.config.html#gettoken" class="tsd-kind-icon">get<wbr>Token</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_config_.config.html#setsocket" class="tsd-kind-icon">set<wbr>Socket</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_config_.config.html#settoken" class="tsd-kind-icon">set<wbr>Token</a></li>
 							</ul>
@@ -140,13 +158,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Config<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>auth_uri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>host<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>new_token_uri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>protocol<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_config_.config.html" class="tsd-signature-type">Config</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Config<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>authUri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>host<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>newTokenUri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>protocol<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>storage<span class="tsd-signature-symbol">?: </span><a href="_storage_.storagefactory.html" class="tsd-signature-type">StorageFactory</a><span class="tsd-signature-symbol"> | </span><a href="_storage_.memorystoragefactory.html" class="tsd-signature-type">MemoryStorageFactory</a><span class="tsd-signature-symbol">; </span>storageTokenKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>supportSocket<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_config_.config.html" class="tsd-signature-type">Config</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/config.ts#L22">config.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L30">config.ts:30</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -157,10 +175,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <span class="tsd-signature-symbol">{ </span>auth_uri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>host<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>new_token_uri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>protocol<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
+									<h5>options: <span class="tsd-signature-symbol">{ </span>authUri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>host<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>newTokenUri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>protocol<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>storage<span class="tsd-signature-symbol">?: </span><a href="_storage_.storagefactory.html" class="tsd-signature-type">StorageFactory</a><span class="tsd-signature-symbol"> | </span><a href="_storage_.memorystoragefactory.html" class="tsd-signature-type">MemoryStorageFactory</a><span class="tsd-signature-symbol">; </span>storageTokenKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>supportSocket<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> }</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
-											<h5><span class="tsd-flag ts-flagOptional">Optional</span> auth_<wbr>uri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> auth<wbr>Uri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>the Georide API authentication endpoint uri</p>
+											</div>
 										</li>
 										<li class="tsd-parameter">
 											<h5>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
@@ -175,7 +196,10 @@
 											</div>
 										</li>
 										<li class="tsd-parameter">
-											<h5><span class="tsd-flag ts-flagOptional">Optional</span> new_<wbr>token_<wbr>uri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> new<wbr>Token<wbr>Uri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>the Georide API new token endpoint uri</p>
+											</div>
 										</li>
 										<li class="tsd-parameter">
 											<h5>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
@@ -187,6 +211,24 @@
 											<h5><span class="tsd-flag ts-flagOptional">Optional</span> protocol<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 											<div class="tsd-comment tsd-typography">
 												<p>the Georide API protocol</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> storage<span class="tsd-signature-symbol">?: </span><a href="_storage_.storagefactory.html" class="tsd-signature-type">StorageFactory</a><span class="tsd-signature-symbol"> | </span><a href="_storage_.memorystoragefactory.html" class="tsd-signature-type">MemoryStorageFactory</a></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>the storage strategy</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> storage<wbr>Token<wbr>Key<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>the storage key to store the token</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> support<wbr>Socket<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>define if client should support socket client connection</p>
 											</div>
 										</li>
 									</ul>
@@ -205,7 +247,7 @@
 					<div class="tsd-signature tsd-kind-icon">auth<wbr>Uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/config.ts#L19">config.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L25">config.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,7 +257,7 @@
 					<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/config.ts#L15">config.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L21">config.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -225,7 +267,7 @@
 					<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/config.ts#L17">config.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L23">config.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -235,7 +277,7 @@
 					<div class="tsd-signature tsd-kind-icon">new<wbr>Token<wbr>Uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/config.ts#L20">config.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L26">config.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -245,7 +287,7 @@
 					<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/config.ts#L16">config.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L22">config.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -255,7 +297,7 @@
 					<div class="tsd-signature tsd-kind-icon">protocol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/config.ts#L18">config.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L24">config.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -265,23 +307,65 @@
 					<div class="tsd-signature tsd-kind-icon">socket<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">Socket</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/config.ts#L22">config.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L28">config.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="token" class="tsd-anchor"></a>
-					<h3>token</h3>
-					<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <a href="_request_.token.html" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="storage" class="tsd-anchor"></a>
+					<h3>storage</h3>
+					<div class="tsd-signature tsd-kind-icon">storage<span class="tsd-signature-symbol">:</span> <a href="_storage_.storagefactory.html" class="tsd-signature-type">StorageFactory</a><span class="tsd-signature-symbol"> | </span><a href="_storage_.memorystoragefactory.html" class="tsd-signature-type">MemoryStorageFactory</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/config.ts#L21">config.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L29">config.ts:29</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="storagetokenkey" class="tsd-anchor"></a>
+					<h3>storage<wbr>Token<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">storage<wbr>Token<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L30">config.ts:30</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="supportsocket" class="tsd-anchor"></a>
+					<h3>support<wbr>Socket</h3>
+					<div class="tsd-signature tsd-kind-icon">support<wbr>Socket<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L27">config.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="gettoken" class="tsd-anchor"></a>
+					<h3>get<wbr>Token</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Token<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_request_.token.html" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L109">config.ts:109</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Getter for the token</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_request_.token.html" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="setsocket" class="tsd-anchor"></a>
 					<h3>set<wbr>Socket</h3>
@@ -292,7 +376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/config.ts#L59">config.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L118">config.ts:118</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -322,7 +406,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/config.ts#L51">config.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/config.ts#L88">config.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -374,6 +458,9 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_request_.html">&quot;request&quot;</a>
 					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_storage_.html">&quot;storage&quot;</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
@@ -408,7 +495,16 @@
 								<a href="_config_.config.html#socket" class="tsd-kind-icon">socket</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_config_.config.html#token" class="tsd-kind-icon">token</a>
+								<a href="_config_.config.html#storage" class="tsd-kind-icon">storage</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_config_.config.html#storagetokenkey" class="tsd-kind-icon">storage<wbr>Token<wbr>Key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_config_.config.html#supportsocket" class="tsd-kind-icon">support<wbr>Socket</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_config_.config.html#gettoken" class="tsd-kind-icon">get<wbr>Token</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_config_.config.html#setsocket" class="tsd-kind-icon">set<wbr>Socket</a>

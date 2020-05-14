@@ -97,7 +97,7 @@
 					<h2>How to use</h2>
 				</a>
 				<p>Example :</p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> Georide = <span class="hljs-built_in">require</span>(<span class="hljs-string">'georide-js'</span>).default
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> { Client } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'georide-js'</span>)
 
 
 <span class="hljs-keyword">const</span> EMAIL = process.env.EMAIL
@@ -105,7 +105,7 @@
 
 <span class="hljs-keyword">const</span> main = <span class="hljs-keyword">async</span> () =&gt; {
   <span class="hljs-comment">// Create the client</span>
-  <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Georide(EMAIL, PASSWORD)
+  <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Client(EMAIL, PASSWORD)
 
   <span class="hljs-comment">// Authenticate the user</span>
   <span class="hljs-keyword">const</span> token = <span class="hljs-keyword">await</span> client.login()
@@ -189,6 +189,9 @@ docker build ./</code></pre>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_request_.html">&quot;request&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_storage_.html">&quot;storage&quot;</a>
 					</li>
 				</ul>
 			</nav>

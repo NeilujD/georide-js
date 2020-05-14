@@ -110,6 +110,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_georide_.georide.html#user" class="tsd-kind-icon">User</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_georide_.georide.html#config" class="tsd-kind-icon">config</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_georide_.georide.html#request" class="tsd-kind-icon">request</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_georide_.georide.html#storage" class="tsd-kind-icon">storage</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -131,13 +132,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Georide<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>auth_uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>new_token_uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>protocol<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_georide_.georide.html" class="tsd-signature-type">Georide</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Georide<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>authUri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>newTokenUri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>protocol<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>storage<span class="tsd-signature-symbol">: </span><a href="_storage_.storagefactory.html" class="tsd-signature-type">StorageFactory</a><span class="tsd-signature-symbol"> | </span><a href="_storage_.memorystoragefactory.html" class="tsd-signature-type">MemoryStorageFactory</a><span class="tsd-signature-symbol">; </span>storageTokenKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>supportSocket<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_georide_.georide.html" class="tsd-signature-type">Georide</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/georide.ts#L24">georide.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L25">georide.ts:25</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -164,7 +165,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-symbol">{ </span>auth_uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>new_token_uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>protocol<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-symbol">{ </span>authUri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>newTokenUri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>protocol<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>storage<span class="tsd-signature-symbol">: </span><a href="_storage_.storagefactory.html" class="tsd-signature-type">StorageFactory</a><span class="tsd-signature-symbol"> | </span><a href="_storage_.memorystoragefactory.html" class="tsd-signature-type">MemoryStorageFactory</a><span class="tsd-signature-symbol">; </span>storageTokenKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>supportSocket<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = {}</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>client options</p>
@@ -185,7 +186,7 @@
 					<div class="tsd-signature tsd-kind-icon">Tracker<span class="tsd-signature-symbol">:</span> <a href="_endpoints_tracker_.tracker.html" class="tsd-signature-type">Tracker</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/georide.ts#L23">georide.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L24">georide.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -195,7 +196,7 @@
 					<div class="tsd-signature tsd-kind-icon">Trip<span class="tsd-signature-symbol">:</span> <a href="_endpoints_trip_.trip.html" class="tsd-signature-type">Trip</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/georide.ts#L24">georide.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L25">georide.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -205,7 +206,7 @@
 					<div class="tsd-signature tsd-kind-icon">User<span class="tsd-signature-symbol">:</span> <a href="_endpoints_user_.user.html" class="tsd-signature-type">User</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/georide.ts#L22">georide.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L23">georide.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,7 +216,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="_config_.config.html" class="tsd-signature-type">Config</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/georide.ts#L20">georide.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L20">georide.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -225,7 +226,17 @@
 					<div class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">:</span> <a href="_request_.request.html" class="tsd-signature-type">Request</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/georide.ts#L21">georide.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L21">georide.ts:21</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="storage" class="tsd-anchor"></a>
+					<h3>storage</h3>
+					<div class="tsd-signature tsd-kind-icon">storage<span class="tsd-signature-symbol">:</span> <a href="_storage_.storagefactory.html" class="tsd-signature-type">StorageFactory</a><span class="tsd-signature-symbol"> | </span><a href="_storage_.memorystoragefactory.html" class="tsd-signature-type">MemoryStorageFactory</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L22">georide.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -242,7 +253,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/georide.ts#L51">georide.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L69">georide.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -264,7 +275,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/georide.ts#L83">georide.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L101">georide.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -294,7 +305,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/georide.ts#L67">georide.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L85">georide.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -324,7 +335,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/georide.ts#L59">georide.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L77">georide.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -354,7 +365,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/93ad680/src/georide.ts#L75">georide.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/NeilujD/georide-js/blob/cc32f2b/src/georide.ts#L93">georide.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -406,10 +417,16 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_request_.html">&quot;request&quot;</a>
 					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_storage_.html">&quot;storage&quot;</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="../modules/_georide_.html#client" class="tsd-kind-icon">Client</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
@@ -433,6 +450,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_georide_.georide.html#request" class="tsd-kind-icon">request</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_georide_.georide.html#storage" class="tsd-kind-icon">storage</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_georide_.georide.html#login" class="tsd-kind-icon">login</a>
 							</li>
@@ -452,16 +472,16 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-module">
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
 						<a href="../modules/_georide_.html#alarm" class="tsd-kind-icon">ALARM</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-module">
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
 						<a href="../modules/_georide_.html#device" class="tsd-kind-icon">DEVICE</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-module">
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
 						<a href="../modules/_georide_.html#message" class="tsd-kind-icon">MESSAGE</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-module">
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
 						<a href="../modules/_georide_.html#position" class="tsd-kind-icon">POSITION</a>
 					</li>
 				</ul>
