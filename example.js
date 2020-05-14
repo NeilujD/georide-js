@@ -30,6 +30,7 @@ const main = async () => {
   // Subscribe to the `position` event
   client.onPosition(message => {
     const { trackerId, latitude, longitude, moving } = message
+    console.log(message)
   })
 
   process.exit()

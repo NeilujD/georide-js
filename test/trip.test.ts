@@ -33,9 +33,9 @@ describe('trip endpoint', () => {
       const result = await client.Trip.get(shareId)
       assert.deepEqual(result, data)
     })
+  })
 
-    after(()=>{
-      nock.cleanAll()
-    })
+  after(() => {
+    nock.cleanAll()
   })
 })

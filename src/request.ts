@@ -83,7 +83,7 @@ class Request {
    * @return {Promise<Token>} a promise to the token
    */
   async authenticate (): Promise<Token> {
-    const { email, password, protocol, host, authUri } = this.config
+    const { email, password, protocol, host, authUri, supportSocket } = this.config
     
     const method = 'POST'
     const body = JSON.stringify({ email, password })
@@ -103,18 +103,27 @@ class Request {
       const token = new Token(data)
       this.config.setToken(token)
 
-      // Create the socket.io client
-      const socket = io(`${protocol}://${host}/`, {
-        reconnection: true,
-        transportOptions: {
-          polling: {
-            extraHeaders: {
-              token: token.authToken
+      // WORKAROUND: permit to pass the test without mocking the Socket.IO server
+      if (supportSocket) {
+        // Create the socket.io client
+        const socket = io(`${protocol}://${host}/`, {
+          reconnection: true,
+          transportOptions: {
+            polling: {
+              extraHeaders: {
+                token: token.authToken
+              }
             }
           }
-        }
-      })
-      this.config.setSocket(socket)
+        })
+        // Prevent disconnect from socket server if there is non valid token
+        socket.on('disconnect', async (r: string) => {
+          const t = this.config.getToken()
+          await this.newToken(token)
+          this.config.socket.connect()
+        })
+        this.config.setSocket(socket)
+      }
 
       return token
     } catch (e) {
@@ -152,8 +161,6 @@ class Request {
         }
       else if (params)
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-
-      console.log(url.toString())
 
       try {
         const response = await fetch(url.toString(), options)
@@ -208,16 +215,6 @@ class Request {
         id, email, isAdmin, authToken
       }))
 
-      // Update the socket.io client
-      this.config.socket.io.opts.transportOptions = {
-        ...this.config.socket.io.opts.transportOptions,
-        polling: {
-          extraHeaders: {
-            token: data.authToken
-          }
-        }
-      }
-
       return this.config.getToken()!
     } catch (e) {
       throw e
@@ -229,7 +226,10 @@ class Request {
    * @param {string} event the event name
    * @param {function} callback the callback function
    */
-  subscribe (event: string, callback: Function) {
+  async subscribe (event: string, callback: Function) {
+    if (!this.config.supportSocket) throw new Error('socket_not_supported')
+    // Authenticate the user if no socket client or token exists
+    if (!this.config.socket || !this.config.getToken()) await this.authenticate()
     this.config.socket.on(event, (message: object) => callback(message))
   }
 }

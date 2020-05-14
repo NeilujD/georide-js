@@ -2,14 +2,19 @@ import { assert } from 'chai'
 import nock from 'nock'
 
 import Georide from '../src/georide'
-import { Token, GEORIDE_INVALID_LOGIN, GEORIDE_MISSING_TOKEN_ERROR, ERRORS } from '../src/request'
+import { 
+  Token, 
+  GEORIDE_INVALID_LOGIN, 
+  GEORIDE_MISSING_TOKEN_ERROR, 
+  ERRORS 
+} from '../src/request'
 
 
 describe('Georide authentication', () => {
   const apiUrl = 'https://api.georide.fr'
   const emailAddress = "email@email.com"
   const password = "123"
-  const client = new Georide(emailAddress, password)
+  const client = new Georide(emailAddress, password, { supportSocket: false })
   const scope = nock(apiUrl)
   const tokenData = {
     id: 123,
@@ -39,10 +44,6 @@ describe('Georide authentication', () => {
       } catch (e) {
         assert.equal(e.message, ERRORS[GEORIDE_INVALID_LOGIN])
       }
-    })
-
-    after(()=>{
-      nock.cleanAll()
     })
   })
 
@@ -91,9 +92,9 @@ describe('Georide authentication', () => {
         assert.equal(e.message, ERRORS[GEORIDE_MISSING_TOKEN_ERROR])
       }
     })
+  })
 
-    after(()=>{
-      nock.cleanAll()
-    })
+  after(() => {
+    nock.cleanAll()
   })
 })
