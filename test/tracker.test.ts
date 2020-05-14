@@ -21,7 +21,7 @@ describe('tracker endpoint', () => {
   const from = new Date(), to = new Date()
 
   beforeEach(() => {
-    client.config.token = new Token(tokenData)
+    client.config.setToken(new Token(tokenData))
   })
 
   describe('get tracker trips', () => {
@@ -152,7 +152,7 @@ describe('tracker endpoint', () => {
     })
   })
 
-  after(()=>{
+  after(() => {
     nock.cleanAll()
   })
 })

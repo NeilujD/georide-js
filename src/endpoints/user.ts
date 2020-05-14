@@ -6,7 +6,7 @@ import Config from '../config'
  * User endpoint class
  * @category Endpoint
  */
-export default class User extends BaseEndpoint {
+class User extends BaseEndpoint {
   /**
    * Create an `User` endpoint instance
    * @param {Config} config 
@@ -38,3 +38,5 @@ export default class User extends BaseEndpoint {
     return this.request.send(uri)
   }
 }
+export default User
+export { User }

@@ -1,6 +1,7 @@
 import { Socket } from 'socket.io-client'
 
 import { Token } from './request'
+import { StorageFactory, MemoryStorageFactory } from './storage'
 
 
 /**
@@ -10,16 +11,23 @@ import { Token } from './request'
  * @property {string} host the Georide API host
  * @property {string} protocol the Georide API protocol
  * @property {string} authUri the Georide API authentication endpoint uri
+ * @property {string} newTokenUri the Georide API refresh token endpoint uri
+ * @property {Socket} socket the socket client
+ * @property {boolean} supportSocket define if client should support socket client connection
+ * @property {object} storage the storage used to store the token 
+ * @property {string} storageTokenKey the storage key to the token
  */
-export default class Config {
+class Config {
   email: string
   password: string
   host: string
   protocol: string
   authUri: string
   newTokenUri: string
-  token: Token | null
+  supportSocket: boolean
   socket!: typeof Socket
+  storage: StorageFactory | MemoryStorageFactory
+  storageTokenKey: string
 
   /**
    * Create a config instance
@@ -29,27 +37,78 @@ export default class Config {
    * @param {string} options.host the Georide API host
    * @param {string} options.protocol the Georide API protocol
    * @param {string} options.authUri the Georide API authentication endpoint uri
-   * @param {string} options.newTokenUri the Georide API new token request uri
+   * @param {string} options.newTokenUri the Georide API new token endpoint uri
+   * @param {object} options.storage the storage strategy
+   * @param {string} options.storageTokenKey the storage key to store the token
+   * @param {boolean} options.supportSocket define if client should support socket client connection
    */
-  constructor (options: { email: string, password: string, host?: string, protocol?: string, auth_uri?: string, new_token_uri?: string }) {
-    const { email, password, host = 'api.georide.fr', protocol = 'https', auth_uri = '/user/login', new_token_uri = '/user/new-token'} = options
+  constructor (
+    options: { 
+      email: string, 
+      password: string, 
+      host?: string, 
+      protocol?: string, 
+      authUri?: string, 
+      newTokenUri?: string, 
+      storage?: StorageFactory | MemoryStorageFactory,
+      storageTokenKey?: string,
+      supportSocket?: boolean
+    }
+  ) {
+    const { 
+      email, 
+      password, 
+      host = 'api.georide.fr', 
+      protocol = 'https', 
+      authUri = '/user/login', 
+      newTokenUri = '/user/new-token', 
+      storage = new StorageFactory(),
+      storageTokenKey = 'georide_token',
+      supportSocket = true
+    } = options
 
     this.email = email
     this.password = password
 
     this.host = host
     this.protocol = protocol
-    this.authUri = auth_uri
-    this.newTokenUri = new_token_uri
+    this.authUri = authUri
+    this.newTokenUri = newTokenUri
 
-    this.token = null
+    this.storage = storage
+    this.storageTokenKey = storageTokenKey
+
+    this.supportSocket = supportSocket
   }
 
-  /** Setter for the token
+  /** 
+   * Setter for the token
    * @param {Token} token
    */
   setToken (token: Token | null) {
-    this.token = token
+    // Update token in storage
+    if (!token) this.storage.delete(this.storageTokenKey)
+    else this.storage.set(this.storageTokenKey, JSON.stringify(token))
+
+    // Update token in socket client
+    if (this.socket)
+      this.socket.io.opts.transportOptions = {
+        ...this.socket.io.opts.transportOptions,
+        polling: {
+          extraHeaders: {
+            token: token ? token.authToken : null
+          }
+        }
+      }
+  }
+
+  /**
+   * Getter for the token
+   * @return {Token | null}
+   */
+  getToken (): Token | null {
+    const t = this.storage.get(this.storageTokenKey)
+    return t ? new Token(JSON.parse(t)) : null
   }
 
   /**
@@ -60,3 +119,5 @@ export default class Config {
     this.socket = socket
   }
 }
+export default Config
+export { Config }

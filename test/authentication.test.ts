@@ -2,14 +2,19 @@ import { assert } from 'chai'
 import nock from 'nock'
 
 import Georide from '../src/georide'
-import { Token, GEORIDE_INVALID_LOGIN, GEORIDE_MISSING_TOKEN_ERROR, ERRORS } from '../src/request'
+import { 
+  Token, 
+  GEORIDE_INVALID_LOGIN, 
+  GEORIDE_MISSING_TOKEN_ERROR, 
+  ERRORS 
+} from '../src/request'
 
 
 describe('Georide authentication', () => {
   const apiUrl = 'https://api.georide.fr'
   const emailAddress = "email@email.com"
   const password = "123"
-  const client = new Georide(emailAddress, password)
+  const client = new Georide(emailAddress, password, { supportSocket: false })
   const scope = nock(apiUrl)
   const tokenData = {
     id: 123,
@@ -46,7 +51,7 @@ describe('Georide authentication', () => {
     const infoData = {ok: true}
 
     it('should try to authenticate if no token exist', async () => {
-      client.config.token = null
+      client.config.setToken(null)
       
       scope.post('/user/login', { email: emailAddress, password }).reply(200, tokenData)
       scope.get('/user').reply(200, infoData)
@@ -56,7 +61,7 @@ describe('Georide authentication', () => {
     })
 
     it('should try to generate a new token if token is not valid', async () => {
-      client.config.token = new Token(tokenData)
+      client.config.setToken(new Token(tokenData))
 
       scope.get('/user').matchHeader('authorization', `Bearer ${tokenData.authToken}`).reply(200, {
         errors: { message: GEORIDE_MISSING_TOKEN_ERROR }
@@ -70,11 +75,11 @@ describe('Georide authentication', () => {
 
       const info = await client.User.info()
       assert.deepEqual(info, infoData)
-      assert.propertyVal(client.config.token, 'authToken', authToken)
+      assert.propertyVal(client.config.getToken(), 'authToken', authToken)
     })
 
     it('throw an error if no valid token is given', async () => {
-      client.config.token = null
+      client.config.setToken(null)
 
       scope.post('/user/login', { email: emailAddress, password }).reply(200, tokenData)
       scope.get('/user').reply(200, {
@@ -89,7 +94,7 @@ describe('Georide authentication', () => {
     })
   })
 
-  after(()=>{
+  after(() => {
     nock.cleanAll()
   })
 })

@@ -7,7 +7,7 @@ import { formatDateParam } from '../helper'
  * Tracker endpoint class
  * @category Endpoint
  */
-export default class Tracker extends BaseEndpoint {
+class Tracker extends BaseEndpoint {
   /**
    * Create a `Tracker` endpoint instance
    * @param {Config} config 
@@ -24,7 +24,11 @@ export default class Tracker extends BaseEndpoint {
    * @param {Date} to the end date filter
    * @return {Promise<{}>} a promise to the trips list
    */
-  trips (id: number, from: Date, to: Date): Promise<{}> {
+  trips (
+    id: number, 
+    from: Date, 
+    to: Date
+  ): Promise<{}> {
     const { baseUri } = this
     const uri = `/${baseUri}/${id}/trips`
     const params = formatDateParam({ from ,to })
@@ -39,7 +43,11 @@ export default class Tracker extends BaseEndpoint {
    * @param {Date} to the end date filter
    * @return {Promise<{}>} a promise to the positions data
    */
-  positions (id: number, from: Date, to: Date): Promise<{}> {
+  positions (
+    id: number, 
+    from: Date, 
+    to: Date
+  ): Promise<{}> {
     const { baseUri } = this
     const uri = `/${baseUri}/${id}/trips/positions`
     const params = formatDateParam({ from ,to })
@@ -90,10 +98,22 @@ export default class Tracker extends BaseEndpoint {
    * @param {Date} params.to the `to` filter date
    * @param {number} params.tripMergeId the id of a merge trip
    */
-  shareTrip (id: number, params: { tripId: number } | { from: Date, to: Date } | { tripMergeId: number }) {
+  shareTrip (
+    id: number, 
+    params: { 
+      tripId: number 
+    } | { 
+      from: Date, 
+      to: Date 
+    } | { 
+      tripMergeId: number 
+    }
+  ) {
     const { baseUri } = this
     const uri = `/${baseUri}/${id}/share/trip`
 
     return this.request.send(uri, formatDateParam(params), 'POST')
   }
 }
+export default Tracker
+export { Tracker }

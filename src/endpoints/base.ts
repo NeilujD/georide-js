@@ -9,7 +9,7 @@ import Request from '../request'
  * @property {Request} request the request object
  * @property {string} baseUri the endpoint base URI
  */
-export default class BaseEndpoint {
+class BaseEndpoint {
   config: Config
   request: Request
   baseUri!: string
@@ -23,3 +23,5 @@ export default class BaseEndpoint {
     this.request = new Request(config)
   }
 }
+export default BaseEndpoint
+export { BaseEndpoint }

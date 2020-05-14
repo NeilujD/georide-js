@@ -6,7 +6,7 @@ import Config from '../config'
  * Trip endpoint class
  * @category Endpoint
  */
-export default class Trip extends BaseEndpoint {
+class Trip extends BaseEndpoint {
   /**
    * Create a `Trip` endpoint instance
    * @param {Config} config 
@@ -28,3 +28,5 @@ export default class Trip extends BaseEndpoint {
     return this.request.send(uri)
   }
 }
+export default Trip
+export { Trip }

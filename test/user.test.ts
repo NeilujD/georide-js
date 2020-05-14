@@ -19,7 +19,7 @@ describe('user endpoint', () => {
   }
 
   beforeEach(() => {
-    client.config.token = new Token(tokenData)
+    client.config.setToken(new Token(tokenData))
   })
 
   describe('get user info', () => {
@@ -58,7 +58,7 @@ describe('user endpoint', () => {
     })
   })
 
-  after(()=>{
+  after(() => {
     nock.cleanAll()
   })
 })

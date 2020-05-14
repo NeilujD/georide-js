@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import io from 'socket.io-client'
-import fetch from 'node-fetch'
+import fetch from 'cross-fetch'
 
 import Config from './config'
 
@@ -44,7 +44,14 @@ export class Token {
    * @param {boolean} data.isAdmin determine is user has admin right on Georide API
    * @param {string} data.authToken the access token 
    */
-  constructor (data: { id: number, email: string, isAdmin: boolean, authToken: string}) {
+  constructor (
+    data: { 
+      id: number, 
+      email: string, 
+      isAdmin: boolean, 
+      authToken: string
+    }
+  ) {
     const { id, email, isAdmin, authToken } = data
 
     this.id = id
@@ -60,7 +67,7 @@ export class Token {
  * @property {Config} config the config neened to perform requests
  * @property {Token} token the required Georide token 
  */
-export default class Request {
+class Request {
   config: Config
 
   /**
@@ -76,7 +83,7 @@ export default class Request {
    * @return {Promise<Token>} a promise to the token
    */
   async authenticate (): Promise<Token> {
-    const { email, password, protocol, host, authUri } = this.config
+    const { email, password, protocol, host, authUri, supportSocket } = this.config
     
     const method = 'POST'
     const body = JSON.stringify({ email, password })
@@ -96,18 +103,27 @@ export default class Request {
       const token = new Token(data)
       this.config.setToken(token)
 
-      // Create the socket.io client
-      const socket = io(`${protocol}://${host}/`, {
-        reconnection: true,
-        transportOptions: {
-          polling: {
-            extraHeaders: {
-              token: token.authToken
+      // WORKAROUND: permit to pass the test without mocking the Socket.IO server
+      if (supportSocket) {
+        // Create the socket.io client
+        const socket = io(`${protocol}://${host}/`, {
+          reconnection: true,
+          transportOptions: {
+            polling: {
+              extraHeaders: {
+                token: token.authToken
+              }
             }
           }
-        }
-      })
-      this.config.setSocket(socket)
+        })
+        // Prevent disconnect from socket server if there is non valid token
+        socket.on('disconnect', async (r: string) => {
+          const t = this.config.getToken()
+          await this.newToken(token)
+          this.config.socket.connect()
+        })
+        this.config.setSocket(socket)
+      }
 
       return token
     } catch (e) {
@@ -122,8 +138,13 @@ export default class Request {
    * @param method 
    * @return {Promise<{}>} a promise to the data
    */
-  async send (uri: string, params: {[key: string]: any} | null = null, method: string = 'GET'): Promise<{}> {
-    const { protocol, host, token } = this.config
+  async send (
+    uri: string, 
+    params: {[key: string]: any} | null = null, 
+    method: string = 'GET'
+  ): Promise<{}> {
+    const { protocol, host } = this.config
+    const token = this.config.getToken()
 
     const req = async (token: Token) => {
       const headers = { 
@@ -142,7 +163,7 @@ export default class Request {
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
       try {
-        const response = await fetch(url, options)
+        const response = await fetch(url.toString(), options)
         if (response.status === 204) return
         const data = await response.json()
 
@@ -188,19 +209,13 @@ export default class Request {
       if (data.error) throw new Error(data.error)
       else if (data.errors && data.errors.message === GEORIDE_MISSING_TOKEN_ERROR) throw new Error(INTERN_MISSING_TOKEN_ERROR)
       
-      this.config.token!.authToken = data.authToken
+      const { id, email, isAdmin } = token
+      const { authToken } = data
+      this.config.setToken(new Token({
+        id, email, isAdmin, authToken
+      }))
 
-      // Update the socket.io client
-      this.config.socket.io.opts.transportOptions = {
-        ...this.config.socket.io.opts.transportOptions,
-        polling: {
-          extraHeaders: {
-            token: data.authToken
-          }
-        }
-      }
-
-      return this.config.token!
+      return this.config.getToken()!
     } catch (e) {
       throw e
     }
@@ -211,7 +226,12 @@ export default class Request {
    * @param {string} event the event name
    * @param {function} callback the callback function
    */
-  subscribe (event: string, callback: Function) {
+  async subscribe (event: string, callback: Function) {
+    if (!this.config.supportSocket) throw new Error('socket_not_supported')
+    // Authenticate the user if no socket client or token exists
+    if (!this.config.socket || !this.config.getToken()) await this.authenticate()
     this.config.socket.on(event, (message: object) => callback(message))
   }
 }
+export default Request
+export { Request }

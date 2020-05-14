@@ -3,22 +3,23 @@ import Request, { Token } from './request'
 import User from './endpoints/user'
 import Tracker from './endpoints/tracker'
 import Trip from './endpoints/trip'
+import { StorageFactory, MemoryStorageFactory } from './storage'
 
 
 const MESSAGE = 'message'
 const DEVICE = 'device'
 const POSITION = 'position'
 const ALARM = 'alarm'
-export { MESSAGE, DEVICE, POSITION, ALARM }
 
 /**
  * JavaScript Georide client class
  * @property {Config} config the client config
  * @property {Request} request the request helper
  */
-export default class Georide {
+class Georide {
   config: Config
   request: Request
+  storage: StorageFactory | MemoryStorageFactory
   User: User
   Tracker: Tracker
   Trip: Trip
@@ -30,14 +31,31 @@ export default class Georide {
    * @param {object} options client options
    * @param {string} options.host the Georide API host
    * @param {string} options.protocol the Georide API protocol
-   * @param {string} options.auth_uri the Georide API authentication uri
+   * @param {string} options.authUri the Georide API authentication uri
+   * @param {string} options.newTokenUri the Georide API refresh token uri
+   * @param {StorageFactory | MemoryStorageFactory} options.storage the storage strategy
+   * @param {object} options.storageTokenKey the storage key to the token
+   * @param {boolean} options.supportSocket define if client should support socket client connection
    */
-  constructor (email: string, password: string, options: {host: string, protocol: string, auth_uri: string, new_token_uri: string} | {} = {}) {
+  constructor (
+    email: string, 
+    password: string, 
+    options: {
+      host: string, 
+      protocol: string, 
+      authUri: string, 
+      newTokenUri: string, 
+      storage: StorageFactory | MemoryStorageFactory,
+      storageTokenKey: string,
+      supportSocket: boolean
+    } | {} = {}
+  ) {
     this.config = new Config({
       email, password,
       ...options
     })
     this.request = new Request(this.config)
+    this.storage = this.config.storage
 
     this.User = new User(this.config)
     this.Tracker = new Tracker(this.config)
@@ -84,3 +102,6 @@ export default class Georide {
     this.request.subscribe(ALARM, callback)
   }
 }
+export default Georide
+// Better export for `cjs`
+export { Georide as Client }
