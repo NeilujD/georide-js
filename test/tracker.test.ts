@@ -41,10 +41,6 @@ describe('tracker endpoint', () => {
       const trips = await client.Tracker.trips(trackerId, from, to)
       assert.deepEqual(data, trips)
     })
-
-    after(()=>{
-      nock.cleanAll()
-    })
   })
 
   describe('get tracker positions', () => {
@@ -64,10 +60,6 @@ describe('tracker endpoint', () => {
       const positions = await client.Tracker.positions(trackerId, from, to)
       assert.deepEqual(data, positions)
     })
-
-    after(()=>{
-      nock.cleanAll()
-    })
   })
 
   describe('lock the tracker', () => {
@@ -77,10 +69,6 @@ describe('tracker endpoint', () => {
       scope.post(`/tracker/${trackerId}/lock`).reply(200, {ok: true})
 
       await client.Tracker.lock(trackerId)
-    })
-
-    after(()=>{
-      nock.cleanAll()
     })
   })
 
@@ -138,10 +126,6 @@ describe('tracker endpoint', () => {
 
       assert.deepEqual(sharedTrip, data)
     })
-
-    after(()=>{
-      nock.cleanAll()
-    })
   })
 
   describe('toggle a tracker lock', () => {
@@ -156,10 +140,6 @@ describe('tracker endpoint', () => {
 
       assert.deepEqual(result, { locked: !locked })
     })
-
-    after(()=>{
-      nock.cleanAll()
-    })
   })
 
   describe('unlock the tracker', () => {
@@ -170,9 +150,9 @@ describe('tracker endpoint', () => {
 
       await client.Tracker.unlock(trackerId)
     })
+  })
 
-    after(()=>{
-      nock.cleanAll()
-    })
+  after(() => {
+    nock.cleanAll()
   })
 })

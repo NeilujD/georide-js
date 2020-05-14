@@ -35,6 +35,7 @@ class Georide {
    * @param {string} options.newTokenUri the Georide API refresh token uri
    * @param {StorageFactory | MemoryStorageFactory} options.storage the storage strategy
    * @param {object} options.storageTokenKey the storage key to the token
+   * @param {boolean} options.supportSocket define if client should support socket client connection
    */
   constructor (
     email: string, 
@@ -45,7 +46,8 @@ class Georide {
       authUri: string, 
       newTokenUri: string, 
       storage: StorageFactory | MemoryStorageFactory,
-      storageTokenKey: string
+      storageTokenKey: string,
+      supportSocket: boolean
     } | {} = {}
   ) {
     this.config = new Config({

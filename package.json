@@ -9,6 +9,7 @@
   },
   "main": "dist/cjs/georide.js",
   "browser": "dist/esm/georide.js",
+  "module": "dist/esm/georide.js",
   "files": [
     "dist/**/*",
     "src/**/*",
